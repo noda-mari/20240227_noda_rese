@@ -1,0 +1,26 @@
+body {
+    padding: 2rem 5rem;
+}
+
+.header {
+    margin-bottom: 5rem;
+}
+
+.back-button {
+    padding: 0.3rem 1rem;
+    border: none;
+    border-radius: 3px;
+    font-size: 2rem;
+    color: #fff;
+    background-color: #1a40ff;
+}
+
+
+.content__wrapper {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #1a40ff;
+}
+

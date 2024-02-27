@@ -1,0 +1,23 @@
+.content__text {
+    padding: 3rem 2rem;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+p {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.back-button {
+    text-align: center;
+}
+
+input {
+    padding: 0.3rem 1rem;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #1a40ff;
+}
