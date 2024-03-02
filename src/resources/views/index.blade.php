@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rose</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/94c49572d8.js" crossorigin="anonymous"></script>
 </head>
 
@@ -73,18 +77,33 @@
                             </form>
                             @auth
                                 @if (!$shop->isFavoriteBy(Auth::user()))
-                                    <div class="favorite-button">
-                                        <a href="/favorite/{{ $shop->id }}"><i
-                                                class="fa-solid fa-heart before"></i></a>
+                                    <div class="favorite__icon">
+                                        <i class="fa-solid fa-heart favorite__toggle before"
+                                            data-shop-id="{{ $shop->id }}"></i>
                                     </div>
                                 @else
-                                    <div class="favorite-button">
-                                        <a href="/favorite/{{ $shop->id }}"><i class="fa-solid fa-heart liked"></i></a>
+                                    <div class="favorite__icon">
+                                        <i class="fa-solid fa-heart favorite__toggle liked"
+                                            data-shop-id="{{ $shop->id }}"></i>
                                     </div>
                                 @endif
                             @endauth
                             @guest
-                            
+                                <div class="favorite__icon">
+                                    <i class="fa-solid fa-heart modal__open before"></i>
+                                </div>
+                                <div id="guest__modal" class="modal">
+                                    <div class="modal__content">
+                                        <div class="close">&times;</div>
+                                        <div class="modal__main">
+                                            <p>お気に入り機能を利用するには、会員登録が必要です</p>
+                                            <p>新規会員登録はこちらから</p>
+                                            <form action="/register" method="GET">
+                                                <button class="register-button">会員登録</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             @endguest
                         </div>
                     </div>
@@ -92,6 +111,8 @@
             @endforeach
         </div>
     </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('js/favorite.js') }}"></script>
 </body>
 
 </html>

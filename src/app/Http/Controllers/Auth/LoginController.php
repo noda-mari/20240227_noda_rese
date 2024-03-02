@@ -26,6 +26,8 @@ class LoginController extends Controller
             return redirect()->intended('/');
         }
 
-        return back();
+        return back()->withErrors([
+            'email' => '入力されたメールアドレス、またはパスワードは登録されていません',
+        ]);
     }
 }

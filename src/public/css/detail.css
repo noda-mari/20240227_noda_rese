@@ -33,10 +33,9 @@ body {
     color: #1a40ff;
 }
 
-
 .shop__name {
     display: flex;
-    align-items:flex-end;
+    align-items: flex-end;
     margin-bottom: 2rem;
 }
 
@@ -92,10 +91,12 @@ body {
     width: 40%;
     border: none;
     border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .time__select select {
-    padding: 0.3rem;
+    padding: 0.5rem;
     margin: 0.5rem 1.5rem;
     width: 80%;
     border: none;
@@ -103,14 +104,12 @@ body {
 }
 
 .number__select select {
-    padding: 0.3rem;
+    padding: 0.5rem;
     margin: 0.5rem 1.5rem;
     width: 80%;
     border: none;
     border-radius: 5px;
 }
-
-
 
 .reserve__confirm--table {
     padding: 1.5rem;
@@ -132,6 +131,10 @@ th {
     font-weight: 400;
 }
 
+.error {
+    color: #ffc1c1;
+}
+
 .reserve-button {
     position: absolute;
     bottom: 0;
@@ -144,4 +147,3 @@ th {
     background-color: #1414cf;
     cursor: pointer;
 }
-
