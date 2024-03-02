@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReserveRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,10 +15,10 @@ use DateTime;
 
 class UserController extends Controller
 {
-    public function favorite($id)
+    public function favorite(Request $request)
     {
         $user_id = Auth::id();
-        $shop_id = $id;
+        $shop_id = $request->shop_id;
         $favorite = Favorite::where('user_id', $user_id)->where('shop_id', $shop_id)->first();
 
         if (!$favorite) {
@@ -55,7 +56,7 @@ class UserController extends Controller
         return view('my-page', compact('reserves', 'favorites', 'user'));
     }
 
-    public function reserveAdd(Request $request, $shop_id)
+    public function reserveAdd(ReserveRequest $request, $shop_id)
     {
 
         if (Auth::check()) {
@@ -79,6 +80,26 @@ class UserController extends Controller
         }
 
         return view('auth.login');
+    }
+
+    public function reserveUpdate(ReserveRequest $request,$shop_id)
+    {
+        $user_id = Auth::id();
+
+        $update_date = [
+            'user_id' => $user_id,
+            'shop_id' => $shop_id,
+            'date' => $request->date,
+            'time' => $request->time,
+            'number' => $request->number,
+        ];
+
+        Reserve::where('user_id',$user_id)->where('shop_id',$shop_id)->update($update_date);
+
+        $request->session()->flash('success', '予約を変更しました');
+
+        return redirect('/mypage');
+
     }
 
     public function reserveDelete($id)
