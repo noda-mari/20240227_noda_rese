@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ShopController;
@@ -27,17 +29,39 @@ Route::get('/', function () {
 
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/thanks',[RegisterController::class,'register']);
-Route::get('/login',[LoginController::class,'index']);
-Route::post('/login',[LoginController::class,'login']);
+Route::get('/thanks', [RegisterController::class, 'register']);
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/thanks');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LogoutController::class, 'destroy'])->middleware('auth');
-Route::get('/',[ShopController::class,'index']);
-Route::get('/shop/search',[ShopController::class,'search']);
-Route::get('/detail/{id}',[ShopController::class, 'shopDetail']);
-Route::get('/menu',[MenuController::class,'menuView']);
+Route::get('/', [ShopController::class, 'index']);
+Route::get('/shop/search', [ShopController::class, 'search']);
+Route::get('/detail/{id}', [ShopController::class, 'shopDetail']);
+Route::get('/menu', [MenuController::class, 'menuView']);
 Route::post('/favorite', [UserController::class, 'favorite'])->name('users.favorite');
-Route::get('/favorite-delete/{id}',[UserController::class, 'favoriteDelete']);
-Route::get('/mypage',[UserController::class,'mypageView']);
-Route::post('/reserve/{shop_id}',[UserController::class,'reserveAdd']);
-Route::post('/reserve/update/{shop_id}',[UserController::class, 'reserveUpdate']);
-Route::get('/reserve-delete/{id}',[UserController::class,'reserveDelete']);
+Route::get('/favorite-delete/{id}', [UserController::class, 'favoriteDelete']);
+Route::get('/mypage', [UserController::class, 'mypageView']);
+
+Route::group(['prefix' => '/reserve'], function () {
+    Route::group(['middleware' => 'auth'], function () {
+        Route::post('{shop_id}', [UserController::class, 'reserveAdd']);
+        Route::post('update/{shop_id}', [UserController::class, 'reserveUpdate']);
+        Route::get('delete/{id}', [UserController::class, 'reserveDelete']);
+    });
+});

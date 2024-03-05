@@ -21,3 +21,9 @@ button {
     color: #fff;
     background-color: #1a40ff;
 }
+
+@media screen and (max-width:480px) {
+    p {
+        font-size: 1rem;
+    }
+}

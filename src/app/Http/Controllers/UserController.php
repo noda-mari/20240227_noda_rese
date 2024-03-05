@@ -82,32 +82,29 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    public function reserveUpdate(ReserveRequest $request,$shop_id)
+    public function reserveUpdate(ReserveRequest $request,$id)
     {
-        $user_id = Auth::id();
 
         $update_date = [
-            'user_id' => $user_id,
-            'shop_id' => $shop_id,
             'date' => $request->date,
             'time' => $request->time,
             'number' => $request->number,
         ];
 
-        Reserve::where('user_id',$user_id)->where('shop_id',$shop_id)->update($update_date);
+        Reserve::find($id)->update($update_date);
 
         $request->session()->flash('success', '予約を変更しました');
 
-        return redirect('/mypage');
+        $reserve_id = $id;
+
+        return redirect('/mypage')->with(compact('reserve_id'));
 
     }
 
     public function reserveDelete($id)
     {
-        $user_id = Auth::id();
-        $shop_id = $id;
 
-        Reserve::where('shop_id', $shop_id)->where('user_id', $user_id)->delete();
+        Reserve::find($id)->delete();
 
         return redirect('/mypage');
     }

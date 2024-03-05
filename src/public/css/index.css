@@ -9,6 +9,7 @@ body {
     align-items: center;
 }
 
+
 .header__inner {
     display: flex;
     align-items: flex-end;
@@ -84,7 +85,7 @@ button {
 .shops-card {
     margin-bottom: 1rem;
     width: 24%;
-    height: 17rem;
+    height: 8%;
     border-radius: 5px;
     box-shadow: 4px 4px 6px #808080;
     background-color: #fff;
@@ -158,17 +159,23 @@ button {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-
 .modal__content {
-    background-color: #fefefe;
+    position: relative;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
     width: 50%;
+    font-family: "Kiwi Maru", serif;
+    font-size: 1.3rem;
+    border: 1px solid #888;
+    border-radius: 10px;
+    background-color: #fefefe;
 }
 
-
 .close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    line-height: 1rem;
     color: #aaa;
     float: right;
     font-size: 2rem;
@@ -192,4 +199,45 @@ button {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* max-width:768px */
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 1.3rem;
+    }
+
+    .header__inner {
+        width: 30%;
+    }
+
+    .header__nav {
+        width: 70%;
+    }
+
+    .shops-card {
+        width: 49%;
+    }
+}
+
+/* max-width:480px */
+
+@media screen and (max-width: 480px) {
+    .header__inner {
+        width: 60%;
+    }
+
+    .header__nav {
+        display: none;
+    }
+
+    .shops-card {
+        width: 100%;
+    }
+
+    .modal__content {
+        width: 90%;
+        font-size: 1rem;
+    }
 }
