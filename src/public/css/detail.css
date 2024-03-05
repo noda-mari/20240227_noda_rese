@@ -78,6 +78,7 @@ body {
     box-shadow: 4px 4px 6px #808080;
 }
 
+
 .reserve__form p {
     margin: 0.5rem 1.5rem;
     font-size: 1.5rem;
@@ -85,9 +86,13 @@ body {
     color: #fff;
 }
 
+.input__wrapper {
+    padding: 1.5rem;
+}
+
 .date__input input {
     padding: 0.3rem;
-    margin: 0.5rem 1.5rem;
+    margin-bottom: 1rem;
     width: 40%;
     border: none;
     border-radius: 5px;
@@ -97,7 +102,7 @@ body {
 
 .time__select select {
     padding: 0.5rem;
-    margin: 0.5rem 1.5rem;
+    margin-bottom: 1rem;
     width: 80%;
     border: none;
     border-radius: 5px;
@@ -105,7 +110,7 @@ body {
 
 .number__select select {
     padding: 0.5rem;
-    margin: 0.5rem 1.5rem;
+    margin-bottom: 1rem;
     width: 80%;
     border: none;
     border-radius: 5px;
@@ -113,8 +118,7 @@ body {
 
 .reserve__confirm--table {
     padding: 1.5rem;
-    margin: 0.5rem 1.5rem;
-    width: 80%;
+    width: 100%;
     border: none;
     border-radius: 5px;
     background-color: #668cff;
@@ -146,4 +150,63 @@ th {
     border: none;
     background-color: #1414cf;
     cursor: pointer;
+}
+
+/*  max-width: 786px */
+
+@media screen and (max-width: 768px) {
+    .content__wrapper {
+        display: block;
+        padding: 2rem;
+    }
+
+    .content-left {
+        padding: 2rem;
+        width: 100%;
+    }
+
+    .content-right {
+        padding: 2rem;
+        width: 100%;
+    }
+
+    .reserve__form {
+        position: static;
+    }
+
+    .reserve-button {
+        position: static;
+        margin-top: 3rem;
+    }
+}
+
+/* max-width: 480px */
+
+@media screen and (max-width: 480px) {
+    .content__wrapper {
+        display: block;
+        padding: 1rem;
+    }
+
+    .content-left {
+        padding: 0;
+        width: 100%;
+    }
+
+    .content-right {
+        padding: 0;
+        width: 100%;
+    }
+
+    .date__input input {
+        width: 70%;
+    }
+
+    .reserve__confirm--table {
+        padding: 0.5rem;
+    }
+
+    th {
+        width: 50%;
+    }
 }

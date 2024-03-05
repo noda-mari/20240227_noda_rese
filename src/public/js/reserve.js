@@ -29,8 +29,9 @@ window.addEventListener("load", function () {
             var selectNumberElement = modal.querySelector(
                 "#modal-reserve-number"
             );
+
             for (var i = 0; i < selectNumberElement.options.length; i++) {
-                if (selectNumberElement.options[i].value === reserve.number) {
+                if ((selectNumberElement.options[i].value) == reserve.number) {
                     selectNumberElement.selectedIndex = i;
                     break;
                 }
@@ -49,9 +50,6 @@ window.addEventListener("load", function () {
     });
 });
 
-
-
-
 window.addEventListener("load", function () {
     var openButtons = document.querySelectorAll("#delete__modal-button");
     openButtons.forEach(function (button) {
@@ -65,7 +63,6 @@ window.addEventListener("load", function () {
         });
     });
 
-
     var closeButtons = document.querySelectorAll(".close-btn");
     closeButtons.forEach(function (button) {
         button.addEventListener("click", function () {
@@ -74,4 +71,3 @@ window.addEventListener("load", function () {
         });
     });
 });
-

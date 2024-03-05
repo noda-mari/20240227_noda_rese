@@ -15,8 +15,8 @@
     margin-top: 1rem;
 }
 
-
 input {
+    margin-left: 0.5rem;
     width: 100%;
     border: none;
     border-bottom: solid 1.5px #808080;
