@@ -42,17 +42,20 @@ header {
 
 .content__wrapper {
     display: flex;
-    padding: 0rem 2rem;
+    padding: 0rem 1rem;
 }
 
-.content-left {
-    padding: 0.5rem 3rem;
-    width: 40%;
+/* ここから予約カードの装飾 */
+
+.content__center {
+    padding: 0.5rem 1rem;
+    width: 28%;
 }
 
 .reserve__table {
-    padding: 2rem;
+    padding: 1.2rem;
     margin-bottom: 2rem;
+    width: 85%;
     border: none;
     border-radius: 10px;
     box-shadow: 4px 4px 6px #808080;
@@ -60,28 +63,15 @@ header {
     background-color: #1a40ff;
 }
 
-.table__title {
-    display: flex;
-    justify-content: space-between;
+#delete__modal-button {
+    cursor: pointer;
+}
+
+.success-message {
     margin-bottom: 0.5rem;
-    align-items: center;
-}
-
-.title__left {
-    display: flex;
-}
-
-.table__img {
-    width: 1.5rem;
-}
-
-.table__img img {
-    width: 100%;
-}
-
-.table__title-item {
-    margin: 0 0 0 3rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
+    text-align: center;
+    color: #ffffb2;
 }
 
 .title__right a {
@@ -90,11 +80,18 @@ header {
     cursor: pointer;
 }
 
-.success-message {
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-    text-align: center;
-    color: #ffffb2;
+.reserve__table table {
+    width: 100%;
+    text-align: left;
+}
+
+.reserve__table th {
+    padding: 0.3rem 0;
+    font-weight: 400;
+}
+
+.reserve__table td {
+    padding: 0.3rem 0;
 }
 
 .reserve__update-button {
@@ -108,6 +105,7 @@ header {
     border: none;
     border-radius: 5px;
     color: #1a40ff;
+    background-color: #fff;
     cursor: pointer;
 }
 
@@ -150,6 +148,7 @@ header {
     border-radius: 5px;
     color: #f4f4f4;
     background-color: #1a40ff;
+    cursor: pointer;
 }
 
 .close-btn {
@@ -161,27 +160,187 @@ header {
     float: right;
     font-size: 2rem;
     font-weight: bold;
+    cursor: pointer;
 }
 
-/* ここまで予約削除モーダルの装飾 */
+/* 予約変更モーダルの装飾 */
 
-.reserve__table table {
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__content {
+    position: relative;
+    margin: 10% auto;
+    padding: 2rem;
+    width: 40%;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+}
+
+.modal__header {
+    text-align: center;
+}
+
+.modal__close-button {
+    position: absolute;
+    right: 1rem;
+    top: 0.3rem;
+    color: #aaa;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.update__table {
+    width: 100%;
+}
+
+.update__table table {
+    margin: 0 auto;
+    text-align: left;
+    width: 100%;
+}
+
+.update__table-th {
+    width: 40%;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.update__table-td {
+    font-size: 1.3rem;
+}
+
+.update__table-td input {
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.update__table-td select {
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.modal__footer {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.form-button {
+    padding: 0.3rem 1rem;
+    border: none;
+    border-radius: 5px;
+    color: #f5f5f5;
+    background-color: #1a40ff;
+    cursor: pointer;
+}
+
+/* 予約履歴カードの装飾 */
+
+.content-left {
+    padding: 0.5rem 1rem;
+    width: 28%;
+}
+
+.reserved__table {
+    padding: 1.2rem;
+    margin-bottom: 2rem;
+    width: 85%;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 4px 4px 6px #808080;
+    color: #fff;
+    background-color: #1e90ff;
+}
+
+.table__title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    align-items: center;
+}
+
+.title__left {
+    display: flex;
+}
+
+.table__img {
+    width: 1.5rem;
+}
+
+i {
+    font-size: 1.5rem;
+}
+
+.table__img img {
+    width: 100%;
+}
+
+.table__title-item {
+    margin: 0 0 0 3rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.reserved__table table {
     width: 100%;
     text-align: left;
 }
 
-.reserve__table th {
+.reserved__table th {
     padding: 0.3rem 0;
     font-weight: 400;
 }
 
-.reserve__table td {
+.reserved__table td {
     padding: 0.3rem 0;
 }
 
+.reserved__review-button {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.reviewed__button {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.reviewed__button button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    color: #fff;
+    background-color: #1e90ff;
+}
+
+.review__button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    color: #ff1493;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* お気に入りカードの装飾*/
+
 .content-right {
-    padding: 0.5rem 3rem;
-    width: 60%;
+    padding: 0.5rem;
+    width: 44%;
 }
 
 .favorite-card__wrapper {
@@ -192,7 +351,8 @@ header {
 
 .favorite-card {
     margin-bottom: 3rem;
-    width: 45%;
+    width: 47%;
+    height: 16.5rem;
     border-radius: 5px;
     box-shadow: 4px 4px 6px #808080;
     background-color: #fff;
@@ -247,88 +407,6 @@ header {
     color: red;
 }
 
-/* モーダルの装飾 */
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal__content {
-    position: relative;
-    margin: 10% auto;
-    padding: 2rem;
-    width: 40%;
-    border-radius: 10px;
-    background-color: #f4f4f4;
-}
-
-.modal__header {
-    text-align: center;
-}
-
-.modal__close-button {
-    position: absolute;
-    right: 1rem;
-    top: 0.3rem;
-    color: #aaa;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-/* ここまでモーダル装飾 */
-
-.update__table {
-    width: 100%;
-}
-
-.update__table table {
-    margin: 0 auto;
-    text-align: left;
-    width: 100%;
-}
-
-th {
-    font-size: 1.5rem;
-    font-weight: 400;
-}
-
-td {
-    font-size: 1.3rem;
-}
-
-.update__table input {
-    border: none;
-    font-size: 1.3rem;
-    cursor: pointer;
-}
-
-.update__table select {
-    border: none;
-    font-size: 1.3rem;
-    cursor: pointer;
-}
-
-.modal__footer {
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.form-button {
-    padding: 0.3rem 1rem;
-    border: none;
-    border-radius: 5px;
-    color: #f5f5f5;
-    background-color: #1a40ff;
-}
-
 /* max-width:768px */
 
 @media screen and (max-width: 768px) {
@@ -341,7 +419,7 @@ td {
     }
 
     .content-left {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0;
         width: 100%;
     }
 
@@ -349,10 +427,36 @@ td {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .table__wrapper::before {
+        content: "";
+        display: block;
+        width: 31%;
+        order: 1;
+    }
+    .table__wrapper::after {
+        content: "";
+        display: block;
+        width: 31%;
+    }
+
+    .reserved__table {
+        width: 31%;
+    }
+
+    .review__button {
+        font-size: 0.8rem;
+    }
+
+    .content__center {
+        padding: 0.5rem 0;
+        width: 100%;
     }
 
     .reserve__table {
-        width: 45%;
+        width: 31%;
     }
 
     .modal__content {
@@ -364,8 +468,30 @@ td {
     }
 
     .content-right {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0;
         width: 100%;
+    }
+
+    .favorite-card__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .favorite-card__wrapper::before {
+        content: "";
+        display: block;
+        width: 31%;
+        order: 1;
+    }
+    .favorite-card__wrapper::after {
+        content: "";
+        display: block;
+        width: 31%;
+    }
+
+    .favorite-card {
+        width: 31%;
     }
 }
 
@@ -393,7 +519,8 @@ td {
         width: 100%;
     }
 
-    .reserve__table {
+    .reserve__table,
+    .reserved__table {
         padding: 1rem;
         width: 100%;
     }
@@ -411,10 +538,18 @@ td {
         width: 90%;
     }
 
-
+    .content__center {
+        padding: 0.5rem 1rem;
+        width: 100%;
+    }
 
     .reserve__table table {
         font-size: 0.8rem;
+    }
+
+    .content-right {
+        padding: 0.5rem 1rem;
+        width: 100%;
     }
 
     .favorite-card__wrapper {
