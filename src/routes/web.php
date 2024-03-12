@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminContller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -9,7 +10,9 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\StoreManagerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +68,11 @@ Route::group(['prefix' => '/reserve'], function () {
         Route::get('delete/{id}', [UserController::class, 'reserveDelete']);
     });
 });
+
+Route::get('/review/{id}', [UserController::class, 'reviewIndex']);
+Route::post('/review/{id}',[UserController::class, 'reviewAdd']);
+
+Route::get('/shop-data',[StoreManagerController::class, 'index']);
+Route::post('/shop-data/add',[StoreManagerController::class, 'shopDataAdd']);
+
+Route::get('/admin',[AdminController::class,'index']);

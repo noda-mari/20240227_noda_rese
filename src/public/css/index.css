@@ -83,9 +83,9 @@ button {
 }
 
 .shops-card {
-    margin-bottom: 1rem;
-    width: 24%;
-    height: 8%;
+    margin-bottom: 1.5rem;
+    width: 23.5%;
+    height: 17rem;
     border-radius: 5px;
     box-shadow: 4px 4px 6px #808080;
     background-color: #fff;
@@ -100,6 +100,7 @@ button {
     border-radius: 5px 5px 0 0;
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 .card__content {
@@ -205,7 +206,7 @@ button {
 
 @media screen and (max-width: 768px) {
     body {
-        padding: 1.3rem;
+        padding: 1.8rem;
     }
 
     .header__inner {
@@ -217,7 +218,7 @@ button {
     }
 
     .shops-card {
-        width: 49%;
+        width: 47%;
     }
 }
 

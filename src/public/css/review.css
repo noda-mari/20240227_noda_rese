@@ -1,0 +1,130 @@
+.review-box {
+    position: relative;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 60%;
+    border: #dcdcdc 1px solid;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #a9a9a9;
+    background-color: #fff;
+}
+
+.review__box-header {
+    text-align: center;
+}
+
+.back__button {
+    position: absolute;
+    top: 0.3rem;
+    right: 1rem;
+    font-size: 2rem;
+    text-decoration: none;
+    color: #454444;
+    cursor: pointer;
+}
+
+
+.review__title {
+    margin: 0 0 0.5rem 0;
+}
+
+.review__shop-name {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.review__box-title {
+    display: flex;
+}
+
+.review__p {
+    margin: 0;
+}
+
+.error {
+    margin-left: 3rem;
+    color: #ff1493;
+}
+
+.review__stars {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.review__stars input[type="radio"] {
+    display: none;
+}
+
+.review__stars label {
+    color: #d2d2d2;
+    line-height: 2rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.review__stars label:hover,
+.review__stars label:hover ~ label,
+.review__stars input[type="radio"]:checked ~ label {
+    color: #ff1493;
+}
+
+.review__textarea textarea {
+    padding: 0.5rem;
+    width: 100%;
+    resize: none;
+    border: solid 1px #dcdcdc;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline:0;
+}
+
+.review-button {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.review-button button {
+    padding: 0.5rem 1rem;
+    width: 30%;
+    border: #ff1493 solid 3px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #ff1493;
+    font-size: 1rem;
+    outline: none;
+}
+
+.review-button button:focus {
+    border: #f697ca solid 3px;
+}
+
+.reviewed__button {
+    margin: 1rem 0 0.8rem 0;
+    text-align: center;
+}
+
+/* max-width:768px */
+
+@media screen and (max-width: 768px) {
+    .review-box {
+        width: 90%;
+    }
+}
+
+/* max-width:480px */
+@media screen and (max-width: 489px) {
+
+    .review-box {
+        width: 100%;
+    }
+
+    .review__box-header {
+        text-align: left;
+    }
+}
+
+
+

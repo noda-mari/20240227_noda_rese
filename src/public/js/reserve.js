@@ -1,13 +1,34 @@
+// 削除モーダル
+window.addEventListener("load", function () {
+    var openButtons = document.querySelectorAll("#delete__modal-button");
+    openButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            var url = this.getAttribute("data-url");
+            document.getElementById("delete__link").setAttribute("action", url);
+
+            var modal = document.getElementById("delete__modal");
+
+            modal.style.display = "block";
+        });
+    });
+
+    var closeButtons = document.querySelectorAll(".close-btn");
+    closeButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            var modal = button.closest("#delete__modal");
+            modal.style.display = "none";
+        });
+    });
+});
+
+// 予約変更モーダル
+
 window.addEventListener("load", function () {
     var openButtons = document.querySelectorAll(".modal__open-button");
     openButtons.forEach(function (button) {
         button.addEventListener("click", function () {
-            var reserveId = this.dataset.reserveId;
             var url = this.getAttribute("data-url");
-            var reservesData = JSON.parse(this.dataset.reserves);
-            var reserve = reservesData.find(function (element) {
-                return element.id == reserveId;
-            });
+            var reserve = JSON.parse(this.dataset.reserve);
 
             document.getElementById("update__form").setAttribute("action", url);
 
@@ -31,7 +52,7 @@ window.addEventListener("load", function () {
             );
 
             for (var i = 0; i < selectNumberElement.options.length; i++) {
-                if ((selectNumberElement.options[i].value) == reserve.number) {
+                if (selectNumberElement.options[i].value == reserve.number) {
                     selectNumberElement.selectedIndex = i;
                     break;
                 }
@@ -45,28 +66,6 @@ window.addEventListener("load", function () {
     closeButtons.forEach(function (button) {
         button.addEventListener("click", function () {
             var modal = button.closest(".modal");
-            modal.style.display = "none";
-        });
-    });
-});
-
-window.addEventListener("load", function () {
-    var openButtons = document.querySelectorAll("#delete__modal-button");
-    openButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            var url = this.getAttribute("data-url");
-            document.getElementById("delete__link").setAttribute("action", url);
-
-            var modal = document.getElementById("delete__modal");
-
-            modal.style.display = "block";
-        });
-    });
-
-    var closeButtons = document.querySelectorAll(".close-btn");
-    closeButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            var modal = button.closest("#delete__modal");
             modal.style.display = "none";
         });
     });

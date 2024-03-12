@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReserveRequest;
+use App\Http\Requests\ReviewRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\favorite;
 use App\Models\Reserve;
+use App\Models\Review;
 
 use DateTime;
+use Carbon\Carbon;
 
 
 
@@ -49,11 +52,36 @@ class UserController extends Controller
 
         $user = Auth::user();
 
-        $reserves = Reserve::with('user', 'shop')->where('user_id', $user_id)->get();
-
+        $reserves_date = Reserve::with('user', 'shop')->where('user_id', $user_id)->get();
         $favorites = Favorite::with('user', 'shop')->where('user_id', $user_id)->get();
+        $reviews = Review::where('user_id', $user_id)->get();
 
-        return view('my-page', compact('reserves', 'favorites', 'user'));
+        $now = new DateTime();
+
+        foreach ($reserves_date as $reserve) {
+            if (Carbon::parse($reserve->date)->gt($now)) {
+                $reserves[] = $reserve;
+            } else {
+                $reserved[] = $reserve;
+
+                foreach ($reserved as $item) {
+                    foreach ($reviews as $review) {
+                        if ($item->id === $review->reserve_id) {
+                            $item['reviewed'] = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!isset($reserves) && !isset($reserved)) {
+            return view('my-page', compact('favorites', 'user'));
+        } elseif (!isset($reserves)) {
+            return view('my-page', compact('reserved', 'favorites', 'user'));
+        } elseif (!isset($reserved)) {
+            return view('my-page', compact('reserves', 'favorites', 'user'));
+        }
+        return view('my-page', compact('reserves', 'reserved', 'favorites', 'user', ));
     }
 
     public function reserveAdd(ReserveRequest $request, $shop_id)
@@ -82,7 +110,7 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    public function reserveUpdate(ReserveRequest $request,$id)
+    public function reserveUpdate(ReserveRequest $request, $id)
     {
 
         $update_date = [
@@ -98,7 +126,6 @@ class UserController extends Controller
         $reserve_id = $id;
 
         return redirect('/mypage')->with(compact('reserve_id'));
-
     }
 
     public function reserveDelete($id)
@@ -107,5 +134,39 @@ class UserController extends Controller
         Reserve::find($id)->delete();
 
         return redirect('/mypage');
+    }
+
+    public function reviewIndex(Request $request, $id)
+    {
+
+        $reserve = Reserve::find($id);
+
+        $shop_id = $reserve->shop_id;
+        $shop_name = $reserve->shop->name;
+
+        $reserve_id = $id;
+
+        return view('review', compact('reserve_id', 'shop_name','shop_id'));
+    }
+
+    public function reviewAdd(ReviewRequest $request,$id)
+    {
+
+        $user_id = Auth::id();
+
+        $shop_id = $request->shop_id;
+
+        $reserve_id = $id;
+
+        Review::create([
+            'user_id' => $user_id,
+            'shop_id' => $shop_id,
+            'reserve_id' => $reserve_id,
+            'review_star' => $request->review_star,
+            'review_comment' => $request->review_comment,
+        ]);
+
+
+        return view('review-thanks');
     }
 }
