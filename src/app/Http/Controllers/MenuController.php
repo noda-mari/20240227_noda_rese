@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
@@ -12,9 +11,8 @@ class MenuController extends Controller
         if (Auth::check()) {
 
             return view('member-menu');
-        } else {
-
-            return view('menu');
         }
+
+        return view('menu');
     }
 }

@@ -1,80 +1,147 @@
-@extends('layouts.header-layout')
+<!DOCTYPE html>
+<html lang="ja">
 
-@section('css')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rese</title>
+    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header-layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/shopdata-add.css') }}">
-@endsection
+</head>
 
-@section('content')
-    <div class="content__title">
-        <p>店舗情報作成 . 更新</p>
-    </div>
-    <div class="shop-data__input-box">
-        <form action="/shop-data/add" method="post" enctype='multipart/form-data'>
-            <div class="flex__box">
-                @csrf
-                <ul class="input__item1">
-                    <li>
-                        <div class="input__title">店舗名：</div>
-                        <input type="text" name="name" id="name">
-                    </li>
-                    <li>
-                        <div class="input__title">所在地：</div>
-                        <select name="area_id" id="area">
-                            @foreach ($areas as $area)
-                                <option value="{{ $area['id'] }}">{{ $area['name'] }}</option>
-                            @endforeach
-                        </select>
-                    </li>
-                    <li>
-                        <div class="input__title">ジャンル：</div>
-                        <select name="genre_id" id="genre">
-                            @foreach ($genres as $genre)
-                                <option value="{{ $genre['id'] }}">{{ $genre['name'] }}</option>
-                            @endforeach
-                        </select>
-                    </li>
-                </ul>
-                <ul class="input__item2">
-                    <li>
-                        <label for="description">店舗のPR：
-                            <textarea name="description" id="description" cols="30" rows="6"></textarea>
-                        </label>
-                    </li>
-                    <li>
-                        <label for="shop_img">店舗画像：
-                            <input type="file" name="shop_img" id="shop_img">
-                        </label>
-                    </li>
-                </ul>
-            </div>
-            <div class="form__button">
-                <button type="submit">作成</button>
-            </div>
-        </form>
-    </div>
-    <div class="content__title">
-        <p>予約情報</p>
-    </div>
-    <div class="reserve__list-wrapper">
-        <div class="reserve__table">
-            <table>
-                <tr>
-                    <th>氏名</th>
-                    <th>日付</th>
-                    <th>時間</th>
-                    <th>人数</th>
-                    <th>レビュー</th>
-                </tr>
-                <tr>
-                    <td>名前</td>
-                    <td>3月23日</td>
-                    <td>16:00:00</td>
-                    <td>2人</td>
-                    <td>
-                        <button>レビュー</button>
-                    </td>
-                </tr>
-            </table>
+<body>
+    <header>
+        <div class="header__inner">
+            <form action="/manager/menu" method="get">
+                <button class="title__logo" type="submit"><img src="{{ asset('storage/images/menu1.png') }}"></button>
+            </form>
+            <h1 class="title">Rese</h1>
         </div>
-    </div>
-@endsection
+    </header>
+
+    <main>
+        <div class="content__title">
+            <p>店舗情報作成 . 更新</p>
+            @if ($shop === null)
+                <p class="content__title-sml">管理している店舗：作成してください</p>
+            @else
+                <p class="content__title-sml">管理している店舗：{{ $shop->name }}</p>
+            @endif
+        </div>
+        <div class="shop-data__input-box">
+            <form action="shop-data/add" method="post" enctype='multipart/form-data'>
+                <div class="flex__box">
+                    @csrf
+                    <div class="input__item1">
+                        <div class="name__input">
+                            <div class="input__title">店舗名：</div>
+                            <input type="text" name="name" id="name" placeholder="{{ $shop->name ?? '' }}">
+                        </div>
+                        <div class="area__input">
+                            <div class="input__title">所在地：</div>
+                            <div class="area__salact-box">
+                                <select name="area_id" id="area">
+                                    @foreach ($areas as $area)
+                                        <option value="{{ $area['id'] }}"
+                                            {{ isset($shop) && $shop->area_id == $area['id'] ? 'selected' : '' }}>
+                                            {{ $area['name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="genre__input">
+                            <div class="input__title">ジャンル：</div>
+                            <div class="genre__select-box">
+                                <select name="genre_id" id="genre">
+                                    @foreach ($genres as $genre)
+                                        <option value="{{ $genre['id'] }}"
+                                            {{ isset($shop) && $shop->genre_id == $genre['id'] ? 'selected' : '' }}>
+                                            {{ $genre['name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input__item2">
+                        <div class="description__input">
+                            <label for="description">店舗のPR：
+                                <textarea name="description" id="description" cols="30" rows="6"
+                                    placeholder="{{ $shop->description ?? '' }}"></textarea>
+                            </label>
+                        </div>
+                        <div class="img__input">
+                            <label for="shop_img">店舗画像：
+                                <input type="file" name="shop_img" id="shop_img">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                @if ($shop === null)
+                    <div class="form__button">
+                        <button type="submit">作成</button>
+                    </div>
+                @else
+                    <div class="form__button">
+                        <button type="submit">更新</button>
+                    </div>
+                @endif
+            </form>
+        </div>
+        <div class="content__title">
+            <p>予約情報</p>
+        </div>
+        <div class="reserve__list-wrapper">
+            <div class="reserve__table">
+                @if ($reserves == null || $reserves->isEmpty())
+                    予約情報はありません。
+                @else
+                    <table>
+                        <tr>
+                            <th>氏名</th>
+                            <th>日付</th>
+                            <th>時間</th>
+                            <th>人数</th>
+                            <th>レビュー</th>
+                        </tr>
+                        @foreach ($reserves as $reserve)
+                            <tr>
+                                <td>{{ $reserve->user->name }}</td>
+                                <td>{{ $reserve->date }}</td>
+                                <td>{{ $reserve->time }}</td>
+                                <td>{{ $reserve->number . '人' }}</td>
+                                <td>
+                                    @if (!$reserve->review)
+                                        {{ 'レビューはされていません' }}
+                                    @else
+                                        <button class="review__model-btn"
+                                            data-star="{{ $reserve->review->review_star }}"
+                                            data-comment="{{ $reserve->review->review_comment }}">レビュー</button>
+                                        {{-- ここからレビューモーダル --}}
+                                        <div id="review__modal">
+                                            <div class="modal__content">
+                                                <div class="content__header">
+                                                    <span class="modal__close-button">×</span>
+                                                </div>
+                                                <div class="review__ster">
+                                                    <p>評価</p>
+                                                    <div class="star"></div>
+                                                </div>
+                                                <div class="review__comment">
+                                                    <p>コメント</p>
+                                                    <div class="comment"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                @endif
+            </div>
+        </div>
+        <script src="{{ asset('js/review.js') }}"></script>
+    </main>
+</body>

@@ -43,11 +43,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function shops()
-    {
-        return $this->hasMany(Shop::class);
-    }
-
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
@@ -58,4 +53,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reserve::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function shops()
+    {
+        return $this->belongsToMany(Shop::class);
+    }
 }

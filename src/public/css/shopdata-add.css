@@ -1,7 +1,16 @@
+.content__title {
+    display: flex;
+    justify-content: space-between;
+}
+
 .content__title p {
     margin: 0 0 1rem 0;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+.content__title .content__title-sml {
+    font-size: 1rem;
 }
 
 .shop-data__input-box {
@@ -24,6 +33,22 @@
 
 li {
     list-style: none;
+}
+
+.area__box {
+    display: flex;
+}
+
+.selected__area {
+    margin-left: 1rem;
+}
+
+.genre__box {
+    display: flex;
+}
+
+.selected__genre {
+    margin-left: 1rem;
 }
 
 .input__item1 input {
@@ -59,6 +84,7 @@ li {
 
 .form__button button {
     padding: 0.5rem 1rem;
+    margin-top: 1rem;
     width: 10%;
     border: none;
     border-radius: 6px;
@@ -91,4 +117,72 @@ li {
 .reserve__table td {
     padding: 1rem 0;
     width: 20%;
+}
+
+#review__modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__content {
+    position: relative;
+    margin: 10% auto;
+    padding: 2rem;
+    width: 40%;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+}
+
+.modal__header {
+    text-align: center;
+}
+
+.modal__close-button {
+    position: absolute;
+    right: 1rem;
+    top: 0.3rem;
+    color: #aaa;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.review__ster p {
+    margin: 0;
+}
+
+.star {
+    color: #1a40ff;
+}
+
+.review__comment p {
+    margin: 1rem 0 0.3rem 0;
+}
+
+/* max-width:768px */
+
+@media screen and (max-width: 768px) {
+    .form__button button {
+        width: 30%;
+    }
+}
+
+/* max-width:480 */
+
+@media screen and (max-width: 480px) {
+    .reserve__list-wrapper {
+        padding: 0.3rem;
+    }
+
+    .reserve__table table {
+        overflow-x: auto;
+    }
 }

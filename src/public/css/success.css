@@ -1,0 +1,38 @@
+.content {
+    padding: 2rem;
+}
+
+.confirm__box {
+    margin: 0 auto;
+    width: 40%;
+    border: #dcdcdc 1px solid;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #808080;
+    background-color: #fff;
+}
+
+.content__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 10px 10px 0 0;
+    color: #fff;
+    background-color: #1a40ff;
+}
+
+.content__header p {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close__button {
+    text-decoration: none;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    color: #dcdcdc;
+}
+
+.content__inner {
+    padding: 1rem;
+    text-align: center;
+}

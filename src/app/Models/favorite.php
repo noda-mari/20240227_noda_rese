@@ -24,5 +24,4 @@ class favorite extends Model
     {
         return $this->belongsTo(Shop::class);
     }
-
 }
