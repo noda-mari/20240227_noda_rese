@@ -25,7 +25,7 @@ class ReviewRequest extends FormRequest
     {
         return [
             'review_star' => 'required',
-            'review_comment' => ['required','string','regex:/^[a-zA-Z0-9ａ-ｚA-Zぁ-んァ-ヶー一-龠]+$/']
+            'review_comment' => ['required', 'string', 'regex:/^[a-zA-Z0-9ａ-ｚA-Zぁ-んァ-ヶー一-龠]+$/']
         ];
     }
 

@@ -31,5 +31,4 @@ class Review extends Model
     {
         return $this->belongsTo(Reserve::class);
     }
-
 }

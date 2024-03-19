@@ -44,6 +44,11 @@ class Shop extends Model
         return $this->hasMany(Reserve::class);
     }
 
+    public function store_manager()
+    {
+        return $this->hasOne(StoreManager::class);
+    }
+
 
 
     public function scopeAreaSearch($query, $area_id)
@@ -55,8 +60,8 @@ class Shop extends Model
 
     public function scopeGenreSearch($query, $genre_id)
     {
-        if (!empty($genre_id)){
-            $query->where('genre_id',$genre_id);
+        if (!empty($genre_id)) {
+            $query->where('genre_id', $genre_id);
         }
     }
 

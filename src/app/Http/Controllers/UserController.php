@@ -52,7 +52,7 @@ class UserController extends Controller
 
         $user = Auth::user();
 
-        $reserves_date = Reserve::with('user', 'shop')->where('user_id', $user_id)->get();
+        $reserves_date = Reserve::with('user', 'shop')->where('user_id', $user_id)->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
         $favorites = Favorite::with('user', 'shop')->where('user_id', $user_id)->get();
         $reviews = Review::where('user_id', $user_id)->get();
 
@@ -81,7 +81,7 @@ class UserController extends Controller
         } elseif (!isset($reserved)) {
             return view('my-page', compact('reserves', 'favorites', 'user'));
         }
-        return view('my-page', compact('reserves', 'reserved', 'favorites', 'user', ));
+        return view('my-page', compact('reserves', 'reserved', 'favorites', 'user',));
     }
 
     public function reserveAdd(ReserveRequest $request, $shop_id)
@@ -146,10 +146,10 @@ class UserController extends Controller
 
         $reserve_id = $id;
 
-        return view('review', compact('reserve_id', 'shop_name','shop_id'));
+        return view('review', compact('reserve_id', 'shop_name', 'shop_id'));
     }
 
-    public function reviewAdd(ReviewRequest $request,$id)
+    public function reviewAdd(ReviewRequest $request, $id)
     {
 
         $user_id = Auth::id();

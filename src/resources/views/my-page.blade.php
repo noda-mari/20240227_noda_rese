@@ -124,10 +124,10 @@
                                                             <th class="update__table-th">時間</th>
                                                             <td class="update__table-td">
                                                                 <select name="time" id="modal-reserve-time">
-                                                                    <option value="16:00:00">16:00</option>
-                                                                    <option value="17:00:00">17:00</option>
-                                                                    <option value="18:00:00">18:00</option>
-                                                                    <option value="19:00:00">19:00</option>
+                                                                    <option value="16:00">16:00</option>
+                                                                    <option value="17:00">17:00</option>
+                                                                    <option value="18:00">18:00</option>
+                                                                    <option value="19:00">19:00</option>
                                                                 </select>
                                                             </td>
                                                         </tr>
@@ -207,7 +207,7 @@
                                         <div class="reserved__review-button">
                                             <form action="/review/{{ $item->id }}" method="get">
                                                 @csrf
-                                                <button type="submit" class="review__button">お店をレビューしよう！</button>
+                                                <button type="submit" class="review__button">レビュー送信</button>
                                             </form>
                                         </div>
                                     @endif

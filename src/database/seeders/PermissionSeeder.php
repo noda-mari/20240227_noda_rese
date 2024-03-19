@@ -6,9 +6,6 @@ use Illuminate\Database\Seeder;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Models\User;
-
-use DateTime;
 
 class PermissionSeeder extends Seeder
 {
@@ -19,36 +16,27 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
+        // 店舗代表者を作成する権限(register)を作成、
+        // 管理者という役割(admin)を作成
+        // 管理者という役割に、権限(register)を与える
+        $admin = Role::create(['guard_name' => 'admin', 'name' => 'admin']);
+        $register_permission = Permission::create(['guard_name' => 'admin', 'name' => 'register']);
+        $admin->givePermissionTo($register_permission);
 
-        $register_permission = Permission::create(['name' => 'register']);
-        $shop_index = Permission::create(['name' => 'shop_index']);
+        // 店舗情報を作成、更新、店舗の予約を確認できる権限(shop_index)を作成、
+        // 店舗代表者という役割(store_manager)を作成
+        // 店舗代表者という役割に、権限(shop_index)を与える
+
+        $store_manager = Role::create(['guard_name' => 'store_manager', 'name' => 'store_manager']);
+        $shop_index = Permission::create(['guard_name' => 'store_manager', 'name' => 'shop_index']);
+        $store_manager->givePermissionTo($shop_index);
+
+        // サイトを使用する権限(general)を作成
+        // 利用者という役割を(user)を作成
+        // 利用者という役割に、権限を(general)与える
+
         $general = Permission::create(['name' => 'general']);
-
-        $admin = Role::create(['name' => 'admin']);
-        $store_manager = Role::create(['name' => 'store_manager']);
         $user = Role::create(['name' => 'user']);
-
-        $admin -> givePermissionTo($register_permission);
-        $store_manager -> givePermissionTo($shop_index);
-        $user -> givePermissionTo($general);
-
-        $user1 = new User();
-        $user1->name = 'テスト管理者';
-        $user1->email = 'test@example.com';
-        $user1->email_verified_at = new DateTime();
-        $user1->password = '$2y$10$KNO0MbewrzFLF35V.NpFyO0.ud/37yrFX3OKriSSV4eZqRFnSIeHe';
-        // パスワードはtest0000
-        $user1->save();
-
-        $user2 = new User();
-        $user2->name = 'テスト店舗代表者';
-        $user2->email = 'shop@example.com';
-        $user2->email_verified_at = new DateTime();
-        $user2->password = '$2y$10$c8yP1MG49F.gA.qXzTj4Ce3y6OiIiW/aiLa1Qhj7/.rAke3vfxNDa';
-        // パスワードはshop0000
-        $user2->save();
-
-        $user1->assignRole('admin');
-        $user2->assignRole('store_manager');
+        $user->givePermissionTo($general);
     }
 }

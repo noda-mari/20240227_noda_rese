@@ -309,12 +309,12 @@ i {
 }
 
 .reserved__review-button {
-    margin-top: 1rem;
+    margin-top: 1.3rem;
     text-align: center;
 }
 
 .reviewed__button {
-    margin-top: 1rem;
+    margin-top: 1.3rem;
     text-align: center;
 }
 
@@ -322,6 +322,7 @@ i {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border: none;
+    border-radius: 5px;
     color: #fff;
     background-color: #1e90ff;
 }

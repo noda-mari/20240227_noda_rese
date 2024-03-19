@@ -24,7 +24,7 @@
                 <div class="form_img">
                     <img src="{{ asset('storage/images/mail.png') }}" alt="">
                 </div>
-                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                <input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
             </div>
             <div class="form__error">
                 @error('email')
