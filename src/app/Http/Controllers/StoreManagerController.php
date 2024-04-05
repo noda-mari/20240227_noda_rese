@@ -76,6 +76,15 @@ class StoreManagerController extends Controller
     public function shopDataUpdate(Request $request)
     {
 
+        if ($request->img_data) {
+            $file_name = $request->img_data->getClientOriginalName();
+
+            $request->img_data->storeAs('public/images', $file_name);
+
+            $request['shop_img'] = $file_name;
+        }
+
+
         $manager_id = Auth::guard('store_manager')->id();
         $manager = StoreManager::find($manager_id);
 

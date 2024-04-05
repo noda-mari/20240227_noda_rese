@@ -100,8 +100,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <input type="file" name="shop_img" id="shop_img"
-                                    value="{{ old('shop_img') }}">
+                                <input type="file" name="shop_img" id="shop_img" value="{{ old('shop_img') }}">
                             </div>
                         </div>
                     </div>
@@ -153,7 +152,7 @@
                             </div>
                             <div class="img__input">
                                 <label for="shop_img">店舗画像：
-                                    <input type="file" name="shop_img" id="shop_img">
+                                    <input type="file" name="img_data" id="shop_img">
                                 </label>
                             </div>
                         </div>
