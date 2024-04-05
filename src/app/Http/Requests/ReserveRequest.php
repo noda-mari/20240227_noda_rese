@@ -24,7 +24,7 @@ class ReserveRequest extends FormRequest
     public function rules()
     {
         return [
-            'date' => 'required|after_or_equal::today',
+            'date' => 'required|after_or_equal:today',
             'time' => 'required',
             'number' => 'required',
         ];

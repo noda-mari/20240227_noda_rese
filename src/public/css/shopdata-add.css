@@ -31,6 +31,14 @@
     width: 30%;
 }
 
+.input__title {
+    display: flex;
+}
+
+.form__error {
+    color: #ff9999;
+}
+
 li {
     list-style: none;
 }
@@ -119,6 +127,15 @@ li {
     width: 20%;
 }
 
+.review__model-btn {
+    padding: 0.2rem 1rem;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #1a40ff;
+    cursor: pointer;
+}
+
 #review__modal {
     display: none;
     position: fixed;
@@ -170,6 +187,10 @@ li {
 /* max-width:768px */
 
 @media screen and (max-width: 768px) {
+    .input__title {
+        display: block;
+    }
+
     .form__button button {
         width: 30%;
     }

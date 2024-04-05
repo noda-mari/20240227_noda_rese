@@ -56,6 +56,9 @@
                                 <option value="17:00" @if (old('time') == '17:00') selected @endif>17:00</option>
                                 <option value="18:00" @if (old('time') == '18:00') selected @endif>18:00</option>
                                 <option value="19:00" @if (old('time') == '19:00') selected @endif>19:00</option>
+                                <option value="20:00" @if (old('time') == '20:00') selected @endif>20:00</option>
+                                <option value="21:00" @if (old('time') == '21:00') selected @endif>21:00</option>
+                                <option value="22:00" @if (old('time') == '22:00') selected @endif>22:00</option>
                             </select>
                         </div>
                         <div class="number__select">
@@ -63,6 +66,9 @@
                                 <option value="" @if (old('number') == '') selected @endif></option>
                                 <option value="1" @if (old('number') == '1') selected @endif>1人</option>
                                 <option value="2" @if (old('number') == '2') selected @endif>2人</option>
+                                <option value="3" @if (old('number') == '3') selected @endif>3人</option>
+                                <option value="4" @if (old('number') == '4') selected @endif>4人</option>
+                                <option value="5" @if (old('number') == '5') selected @endif>5人</option>
                             </select>
                         </div>
                         <div class="reserve__confirm--table">

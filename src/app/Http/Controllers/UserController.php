@@ -54,12 +54,13 @@ class UserController extends Controller
 
         $reserves_date = Reserve::with('user', 'shop')->where('user_id', $user_id)->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
         $favorites = Favorite::with('user', 'shop')->where('user_id', $user_id)->get();
-        $reviews = Review::where('user_id', $user_id)->get();
+        $reviews = Review::with('reserve')->get();
 
         $now = new DateTime();
 
         foreach ($reserves_date as $reserve) {
-            if (Carbon::parse($reserve->date)->gt($now)) {
+            $dateTimeString = $reserve->date . ' ' . $reserve->time;
+            if (Carbon::parse($dateTimeString)->gt($now)) {
                 $reserves[] = $reserve;
             } else {
                 $reserved[] = $reserve;
@@ -152,15 +153,9 @@ class UserController extends Controller
     public function reviewAdd(ReviewRequest $request, $id)
     {
 
-        $user_id = Auth::id();
-
-        $shop_id = $request->shop_id;
-
         $reserve_id = $id;
 
         Review::create([
-            'user_id' => $user_id,
-            'shop_id' => $shop_id,
             'reserve_id' => $reserve_id,
             'review_star' => $request->review_star,
             'review_comment' => $request->review_comment,

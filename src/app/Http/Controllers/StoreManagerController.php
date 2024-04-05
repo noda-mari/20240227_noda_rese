@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\ShopDataRequest;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Shop;
@@ -40,7 +41,7 @@ class StoreManagerController extends Controller
         return view('shopdata-add', compact('areas', 'genres', 'shop', 'reserves'));
     }
 
-    public function shopDataAdd(Request $request)
+    public function shopDataAdd(ShopDataRequest $request)
     {
         $area_id = $request->area_id;
 
@@ -68,6 +69,19 @@ class StoreManagerController extends Controller
         $manager->shop_id = $shop_id;
         $manager->updated_at = $now;
         $manager->save();
+
+        return redirect('manager/shop-data');
+    }
+
+    public function shopDataUpdate(Request $request)
+    {
+
+        $manager_id = Auth::guard('store_manager')->id();
+        $manager = StoreManager::find($manager_id);
+
+        $shop_data = $request->all();
+        unset($shop_data['_token']);
+        Shop::find($manager->shop_id)->update($shop_data);
 
         return redirect('manager/shop-data');
     }

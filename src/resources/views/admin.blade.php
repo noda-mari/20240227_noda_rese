@@ -69,6 +69,11 @@
                         {{ session('error') }}
                     </div>
                 @endif
+                @if (session('error') && session('area'))
+                    <div class="error-message">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="area-input__box">
                     <form action="/admin/area/add" method="post">
                         @csrf
@@ -84,6 +89,11 @@
                     </div>
                 @endif
                 @if (session('error') && session('genre_name'))
+                    <div class="error-message">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @if (session('error') && session('genre'))
                     <div class="error-message">
                         {{ session('error') }}
                     </div>
@@ -119,6 +129,44 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="content__bottom">
+        <div class="content__title">
+            <p>メール送信・編集</p>
+            @if (session('success') && session('mail'))
+                <div class="success-message">
+                    {{ session('success') }}
+                </div>
+            @elseif(session('error') && session('mail'))
+                <div class="error-message">
+                    {{ session('error') }}
+                </div>
+            @endif
+        </div>
+        <div class="mail-send__box">
+            <form action="/admin/mail" method="POST">
+                @csrf
+                <div class="subject__input">
+                    <input type="text" name="subject" placeholder="件名を入力してください">
+                    <div class="form__error">
+                        @error('subject')
+                            {{ $message }}
+                        @enderror
+                    </div>
+                </div>
+                <div class="textarea">
+                    <div class="form__error">
+                        @error('content')
+                            {{ $message }}
+                        @enderror
+                    </div>
+                    <textarea name="content" cols="30" rows="10"></textarea>
+                </div>
+                <div class="mail-submit__button">
+                    <button type="submit">送信</button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection

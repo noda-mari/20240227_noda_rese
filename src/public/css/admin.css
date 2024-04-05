@@ -7,6 +7,7 @@
 }
 
 .content__title p {
+    display: flex;
     margin: 0 0 1rem 0;
     font-size: 1.5rem;
     font-weight: bold;
@@ -188,6 +189,74 @@
     border: 1px solid #ccc;
 }
 
+.content__bottom {
+    padding: 1rem 2rem;
+}
+
+.mail-send__box {
+    padding: 2rem 1rem;
+    border-radius: 10px;
+    border: #a0aef3 1px solid;
+    background-color: #fff;
+}
+
+.subject__input {
+    display: flex;
+}
+
+.mail-send__box input {
+    margin: 0 1rem 1rem 0;
+    font-size: 1rem;
+    outline: 0;
+}
+
+.mail-send__box textarea {
+    width: 100%;
+    font-size: 18px;
+    resize: none;
+    outline: 0;
+}
+
+.mail-submit__button {
+    text-align: center;
+}
+
+.mail-send__box button {
+    padding: 0.4rem 1rem;
+    margin-top: 0.5rem;
+    width: 20%;
+    border: solid 3px #1a40ff;
+    border-radius: 5px;
+    background-color: #1a40ff;
+    color: #fff;
+}
+
+.success-message {
+    font-weight: lighter;
+    color: #1a40ff;
+}
+
+.error-message {
+    font-weight: lighter;
+    color: red;
+}
+
+/* max-width:1024px */
+
+@media screen and (max-width: 1024px) {
+    .input__item input {
+        font-size: 1rem;
+    }
+
+    .input__title {
+        font-size: 0.8rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+}
+
 /* max-width:768px */
 
 @media screen and (max-width: 768px) {
@@ -209,5 +278,9 @@
 @media screen and (max-width: 480px) {
     .input__item {
         display: block;
+    }
+
+    .mail-submit__button button {
+        width: 30%;
     }
 }

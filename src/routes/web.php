@@ -94,6 +94,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('admin-page', [AdminController::class, 'index'])
             ->name('admin.page');
+        Route::post('mail', [AdminController::class, 'sendMail']);
         Route::post('area/add', [AdminController::class, 'areaAdd']);
         Route::post('genre/add', [AdminController::class, 'genreAdd']);
     });
@@ -113,5 +114,6 @@ Route::group(['prefix' => 'manager'], function () {
     Route::middleware(['auth:store_manager'])->group(function () {
         Route::get('shop-data', [StoreManagerController::class, 'index']);
         Route::post('shop-data/add', [StoreManagerController::class, 'shopDataAdd']);
+        Route::post('shop-data/update', [StoreManagerController::class, 'shopDataUpdate']);
     });
 });

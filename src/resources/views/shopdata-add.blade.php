@@ -30,65 +30,140 @@
                 <p class="content__title-sml">管理している店舗：{{ $shop->name }}</p>
             @endif
         </div>
-        <div class="shop-data__input-box">
-            <form action="shop-data/add" method="post" enctype='multipart/form-data'>
-                <div class="flex__box">
-                    @csrf
-                    <div class="input__item1">
-                        <div class="name__input">
-                            <div class="input__title">店舗名：</div>
-                            <input type="text" name="name" id="name" placeholder="{{ $shop->name ?? '' }}">
-                        </div>
-                        <div class="area__input">
-                            <div class="input__title">所在地：</div>
-                            <div class="area__salact-box">
-                                <select name="area_id" id="area">
-                                    @foreach ($areas as $area)
-                                        <option value="{{ $area['id'] }}"
-                                            {{ isset($shop) && $shop->area_id == $area['id'] ? 'selected' : '' }}>
-                                            {{ $area['name'] }}</option>
-                                    @endforeach
-                                </select>
+        @if ($shop === null)
+            <div class="shop-data__input-box">
+                <form action="shop-data/add" method="post" enctype='multipart/form-data'>
+                    <div class="flex__box">
+                        @csrf
+                        <div class="input__item1">
+                            <div class="name__input">
+                                <div class="input__title">店舗名：
+                                    <div class="form__error">
+                                        @error('name')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <input type="text" name="name" id="name" value="{{ old('name') }}">
+                            </div>
+                            <div class="area__input">
+                                <div class="input__title">所在地：
+                                    <div class="form__error">
+                                        @error('area_id')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="area__salact-box">
+                                    <select name="area_id" id="area">
+                                        @foreach ($areas as $area)
+                                            <option value="{{ $area['id'] }}">
+                                                {{ $area['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="genre__input">
+                                <div class="input__title">ジャンル：
+                                    <div class="form__error">
+                                        @error('genre_id')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="genre__select-box">
+                                    <select name="genre_id" id="genre">
+                                        @foreach ($genres as $genre)
+                                            <option value="{{ $genre['id'] }}">
+                                                {{ $genre['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="genre__input">
-                            <div class="input__title">ジャンル：</div>
-                            <div class="genre__select-box">
-                                <select name="genre_id" id="genre">
-                                    @foreach ($genres as $genre)
-                                        <option value="{{ $genre['id'] }}"
-                                            {{ isset($shop) && $shop->genre_id == $genre['id'] ? 'selected' : '' }}>
-                                            {{ $genre['name'] }}</option>
-                                    @endforeach
-                                </select>
+                        <div class="input__item2">
+                            <div class="description__input">
+                                <div class="input__title" for="description">店舗のPR：
+                                    <div class="form__error">
+                                        @error('description')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <textarea name="description" id="description" cols="30" rows="6" value="">{{ old('description') }}</textarea>
+                            </div>
+                            <div class="img__input">
+                                <div class="input__title" for="shop_img">店舗画像：
+                                    <div class="form__error">
+                                        @error('shop_img')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <input type="file" name="shop_img" id="shop_img"
+                                    value="{{ old('shop_img') }}">
                             </div>
                         </div>
                     </div>
-                    <div class="input__item2">
-                        <div class="description__input">
-                            <label for="description">店舗のPR：
-                                <textarea name="description" id="description" cols="30" rows="6"
-                                    placeholder="{{ $shop->description ?? '' }}"></textarea>
-                            </label>
-                        </div>
-                        <div class="img__input">
-                            <label for="shop_img">店舗画像：
-                                <input type="file" name="shop_img" id="shop_img">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                @if ($shop === null)
                     <div class="form__button">
                         <button type="submit">作成</button>
                     </div>
-                @else
+                </form>
+            </div>
+        @else
+            <div class="shop-data__input-box">
+                <form action="shop-data/update" method="post" enctype='multipart/form-data'>
+                    <div class="flex__box">
+                        @csrf
+                        <div class="input__item1">
+                            <div class="name__input">
+                                <div class="input__title">店舗名：</div>
+                                <input type="text" name="name" id="name" value="{{ $shop->name }}">
+                            </div>
+                            <div class="area__input">
+                                <div class="input__title">所在地：</div>
+                                <div class="area__salact-box">
+                                    <select name="area_id" id="area">
+                                        @foreach ($areas as $area)
+                                            <option value="{{ $area['id'] }}"
+                                                {{ isset($shop) && $shop->area_id == $area['id'] ? 'selected' : '' }}>
+                                                {{ $area['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="genre__input">
+                                <div class="input__title">ジャンル：</div>
+                                <div class="genre__select-box">
+                                    <select name="genre_id" id="genre">
+                                        @foreach ($genres as $genre)
+                                            <option value="{{ $genre['id'] }}"
+                                                {{ isset($shop) && $shop->genre_id == $genre['id'] ? 'selected' : '' }}>
+                                                {{ $genre['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input__item2">
+                            <div class="description__input">
+                                <label for="description">店舗のPR：
+                                    <textarea name="description" id="description" cols="30" rows="6" value="">{{ $shop->description }}</textarea>
+                                </label>
+                            </div>
+                            <div class="img__input">
+                                <label for="shop_img">店舗画像：
+                                    <input type="file" name="shop_img" id="shop_img">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form__button">
                         <button type="submit">更新</button>
                     </div>
-                @endif
-            </form>
-        </div>
+                </form>
+            </div>
+        @endif
         <div class="content__title">
             <p>予約情報</p>
         </div>
