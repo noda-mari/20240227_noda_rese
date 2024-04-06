@@ -42,7 +42,7 @@ $ php artisan key:generate
 
 $ cd src/public
 
-$ mv images /home/mari/coachtech/laravel/rese_new/src/storage/app/public
+$ mv images /src/storage/app/public
 
 ### 8 シンボリックリンクを貼る
 

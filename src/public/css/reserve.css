@@ -1,0 +1,18 @@
+.content__box {
+    padding: 2rem;
+    margin: 0 auto;
+    width: 30%;
+}
+
+.title {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.content {
+    font-size: 1.3rem;
+}
+
+table th {
+    text-align: left;
+}

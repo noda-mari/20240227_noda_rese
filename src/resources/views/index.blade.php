@@ -19,7 +19,7 @@
     <header class="header">
         <div class="header__inner">
             <form action="/menu" method="get">
-                <button class="title__logo" type="submit"><img src="{{ asset('storage/images/menu1.png') }}"
+                <button class="title__logo" type="submit"><img src="{{ asset('icons/menu1.png') }}"
                         alt=""></button>
             </form>
             <h1>Rese</h1>
@@ -47,7 +47,7 @@
                         </li>
                         <li>
                             <button>
-                                <img src="{{ asset('storage/images/saerch2.png') }}" alt="">
+                                <img src="{{ asset('icons/saerch2.png') }}" alt="">
                             </button>
                             <input class="search__input" type="text" name="keyword" value="{{ old('keyword') }}"
                                 placeholder="search…">

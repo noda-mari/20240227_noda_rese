@@ -14,7 +14,7 @@
     <header>
         <div class="header__inner">
             <div class="header__img">
-                <button class="title__logo"><img src="{{ asset('storage/images/menu1.png') }}"></button>
+                <button class="title__logo"><img src="{{ asset('icons/menu1.png') }}"></button>
             </div>
             <h1 class="title">Rese</h1>
         </div>

@@ -15,7 +15,7 @@
         <div class="content-left">
             <div class="header">
                 <form action="/menu" method="get">
-                    <button class="title__logo" type="submit"><img src="{{ asset('storage/images/menu1.png') }}"
+                    <button class="title__logo" type="submit"><img src="{{ asset('icons/menu1.png') }}"
                             alt=""></button>
                 </form>
                 <h1 class="title">Rese</h1>

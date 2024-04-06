@@ -14,7 +14,7 @@
 <body>
     <header>
         <div class="header__inner">
-            <button class="login__title-img"><img src="{{ asset('storage/images/menu1.png') }}"></button>
+            <button class="login__title-img"><img src="{{ asset('icons/menu1.png') }}"></button>
             <h1 class="title">Rese</h1>
         </div>
     </header>
@@ -28,7 +28,7 @@
                         @csrf
                         <div class="form__item">
                             <div class="form__img">
-                                <img src="{{ asset('storage/images/mail.png') }}" alt="">
+                                <img src="{{ asset('icons/mail.png') }}" alt="">
                             </div>
                             <input type="text" name="email" placeholder="Email">
                         </div>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="form__item">
                             <div class="form__img">
-                                <img src="{{ asset('storage/images/key.png') }}" alt="">
+                                <img src="{{ asset('icons/key.png') }}" alt="">
                             </div>
                             <input type="password" name="password" placeholder="Password">
                         </div>
