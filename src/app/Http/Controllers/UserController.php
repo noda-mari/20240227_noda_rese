@@ -97,7 +97,7 @@ class UserController extends Controller
             $date = new DateTime($date);
             $time = new DateTime($time);
 
-            Reserve::create([
+            $reserve = Reserve::create([
                 'user_id' => $user_id,
                 'shop_id' => $shop_id,
                 'date' => $date,

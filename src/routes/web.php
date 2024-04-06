@@ -18,6 +18,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Manager\ManagerLoginController;
 use App\Http\Controllers\Manager\ManagerLogoutController;
+use App\Http\Controllers\QrcodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,8 @@ Route::group(['prefix' => 'reserve'], function () {
         Route::post('{shop_id}', [UserController::class, 'reserveAdd']);
         Route::post('update/{shop_id}', [UserController::class, 'reserveUpdate']);
         Route::get('delete/{id}', [UserController::class, 'reserveDelete']);
+        Route::get('qrcode/{id}', [QrcodeController::class, 'index']);
+        Route::post('qrcode/{id}', [QrcodeController::class, 'qrView']);
     });
 });
 

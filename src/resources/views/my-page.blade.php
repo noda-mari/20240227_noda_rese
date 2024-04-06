@@ -16,7 +16,7 @@
     <header>
         <div class="header__inner">
             <form action="/menu" method="get">
-                <button class="title__logo" type="submit"><img src="{{ asset('storage/images/menu1.png') }}"></button>
+                <button class="title__logo" type="submit"><img src="{{ asset('icons/menu1.png') }}"></button>
             </form>
             <h1 class="title">Rese</h1>
         </div>
@@ -43,14 +43,14 @@
                                     <div class="table__title">
                                         <div class="title__left">
                                             <div class="table__img">
-                                                <img src="{{ asset('storage/images/tokei2.png') }}" alt="">
+                                                <img src="{{ asset('icons/tokei2.png') }}" alt="">
                                             </div>
                                             <p class="table__title-item">予約 {{ $i }}</p>
                                         </div>
                                         <div class="title__right">
                                             <a id="delete__modal-button"
                                                 data-url="/reserve/delete/{{ $reserve->id }}"><img
-                                                    src="{{ asset('storage/images/delete1.png') }}" alt=""></a>
+                                                    src="{{ asset('icons/delete1.png') }}" alt=""></a>
                                         </div>
                                         {{-- ここから削除モーダル --}}
                                         <div id="delete__modal" class="delate__modal">
@@ -95,6 +95,12 @@
                                     <div class="reserve__update-button">
                                         <button class="modal__open-button" data-reserve="{{ $reserve }}"
                                             data-url="/reserve/update/{{ $reserve->id }}">予約変更</button>
+                                        <form action="/reserve/qrcode/{{ $reserve->id }}" method="post">
+                                            @csrf
+                                            <button class="qrcode__button">
+                                                QRコード
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                                 {{-- ここから予約変更モーダル --}}

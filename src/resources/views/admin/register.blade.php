@@ -11,7 +11,7 @@
             @csrf
             <div class="form__item">
                 <div class="form__img">
-                    <img src="{{ asset('storage/images/parson.png') }}" alt="">
+                    <img src="{{ asset('icons/parson.png') }}" alt="">
                 </div>
                 <input type="text" name="name" placeholder="Adminname" value="{{ old('name') }}">
             </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="form__item">
                 <div class="form_img">
-                    <img src="{{ asset('storage/images/mail.png') }}" alt="">
+                    <img src="{{ asset('icons/mail.png') }}" alt="">
                 </div>
                 <input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
             </div>
@@ -33,7 +33,7 @@
             </div>
             <div class="form__item">
                 <div class="form__img">
-                    <img src="{{ asset('storage/images/key.png') }}" alt="">
+                    <img src="{{ asset('icons/key.png') }}" alt="">
                 </div>
                 <input type="password" name="password" placeholder="Password">
             </div>

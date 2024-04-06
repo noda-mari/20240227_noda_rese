@@ -15,7 +15,7 @@
     <header>
         <div class="header__inner">
             <form action="manager/menu" method="get">
-                <button class="title__logo" type="submit"><img src="{{ asset('storage/images/menu1.png') }}"></button>
+                <button class="title__logo" type="submit"><img src="{{ asset('icons/menu1.png') }}"></button>
             </form>
             <h1 class="title">Rese</h1>
         </div>
