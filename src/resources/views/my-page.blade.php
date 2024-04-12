@@ -102,6 +102,25 @@
                                             </button>
                                         </form>
                                     </div>
+                                    @if ($reserve->shop_menu_id === null)
+                                        <div class="menu__button">
+                                            <button>事前決済なし</button>
+                                        </div>
+                                    @elseif ($reserve->shop_menu_id && $reserve->payed_time === null)
+                                        <div class="pay__form">
+                                            <form action="/reserve/pay/{{ $reserve->id }}" method="POST">
+                                                @csrf
+                                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ env('STRIPE_KEY') }}"
+                                                    data-amount="{{ $reserve->shop_menu->price }}" data-name="Rese" data-label="決済する" data-description="これはデモ決済です"
+                                                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png" F data-locale="auto" data-currency="JPY">
+                                                </script>
+                                            </form>
+                                        </div>
+                                    @else
+                                        <div class="payed__button">
+                                            <button>支払い済み</button>
+                                        </div>
+                                    @endif
                                 </div>
                                 {{-- ここから予約変更モーダル --}}
                                 <div id="reserve-modal" class="modal">

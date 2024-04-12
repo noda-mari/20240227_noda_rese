@@ -115,6 +115,14 @@ body {
     border-radius: 5px;
 }
 
+.shop_menu__select select {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    width: 80%;
+    border: none;
+    border-radius: 5px;
+}
+
 .reserve__confirm--table {
     padding: 1.5rem;
     width: 100%;

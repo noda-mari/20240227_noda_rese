@@ -17,9 +17,11 @@ class CreateReservesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('shop_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('shop_menu_id')->nullable()->constrained()->cascadeOnDelete();
             $table->date('date');
             $table->time('time');
             $table->integer('number');
+            $table->dateTime('payed_time')->nullable();
             $table->timestamps();
         });
     }

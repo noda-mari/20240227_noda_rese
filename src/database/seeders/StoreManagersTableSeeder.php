@@ -15,7 +15,7 @@ class StoreManagersTableSeeder extends Seeder
      */
     public function run()
     {
-        $manager = StoreManager::create([
+        $manager1 = StoreManager::create([
             'shop_id' => '1',
             'name' => 'テスト店舗管理者',
             'email' => 'shop@example.com',
@@ -24,6 +24,16 @@ class StoreManagersTableSeeder extends Seeder
         ]);
 
 
-        $manager->assignRole('store_manager');
+        $manager1->assignRole('store_manager');
+
+        $manager2 = StoreManager::create([
+            'shop_id' => null,
+            'name' => 'テスト店舗管理者２',
+            'email' => 'shop2@example.com',
+            'email_verified_at' => new Datetime(),
+            'password' => '$2y$10$G5YKB0paSw5gKJ9gYB/KJuWYKP.6/CKqzO5o0QsXdldXkSV.SFL.u'
+        ]);
+
+        $manager2->assignRole('store_manager');
     }
 }

@@ -163,6 +163,66 @@
                 </form>
             </div>
         @endif
+        <div class="content__title2">
+            <p>メニューの設定</p>
+            @if (session('shop_name_success'))
+                <div class="success-message">
+                    {{ session('shop_name_success') }}
+                </div>
+            @endif
+            @if (session('shop_name_error'))
+                <div class="error-message">
+                    {{ session('shop_name_error') }}
+                </div>
+            @endif
+        </div>
+        <div class="shop_menu__create-box">
+            <form class="shop_menu__form" action="/manager/shop_menu/add" method="POST">
+                @csrf
+                <div class="shop_menu__input-box">
+                    <div class="name__input">
+                        <div class="input__title">名前：
+                            <div class="form__error">
+                                @error('menu_name')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
+                        <input type="text" name="menu_name">
+                    </div>
+                    <div class="price__input">
+                        <div class="input__title">値段：
+                            <div class="form__error">
+                                @error('price')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
+                        <input type="text" name="price">
+                    </div>
+                </div>
+                <div class="shop_menu__form-button">
+                    <button type="submit">作成</button>
+                </div>
+            </form>
+            <div class="shop_menu__list">
+                @if ($shop_menus === null)
+                    <label for="menu">▼メニュー一覧</label>
+                    <input type="checkbox" id="menu" class="switch" />
+                    <div class="shop_menu">
+                        <div>{{ 'メニューが作成されていません' }}</div>
+                    </div>
+                @else
+                    <label for="menu">▼メニュー一覧</label>
+                    <input type="checkbox" id="menu" class="switch" />
+                    <div class="shop_menu">
+                        @foreach ($shop_menus as $shop_menu)
+                            <div>{{ $shop_menu['menu_name'] . ':' . $shop_menu['price'] . '円' }}</div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        </div>
         <div class="content__title">
             <p>予約情報</p>
         </div>

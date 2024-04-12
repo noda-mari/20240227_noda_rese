@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\ShopDataRequest;
+use App\Http\Requests\ShopMenuRequest;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Shop;
 use App\Models\StoreManager;
 use App\Models\Reserve;
+use App\Models\ShopMenu;
 
 use Carbon\Carbon;
 
@@ -33,12 +35,20 @@ class StoreManagerController extends Controller
 
         if ($shop_id) {
             $reserves = Reserve::with('user', 'shop', 'review')->where('shop_id', $shop_id)->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
+            $shop_menus = ShopMenu::where('shop_id', $shop_id)->get();
+            if ($shop_menus->isEmpty()) {
+                $shop_menus = null;
+                return view('shopdata-add', compact('areas', 'genres', 'shop', 'reserves', 'shop_menus'));
+            } else {
+                return view('shopdata-add', compact('areas', 'genres', 'shop', 'reserves', 'shop_menus'));
+            }
         } else {
             $reserves = null;
+            $shop_menus = null;
         }
 
 
-        return view('shopdata-add', compact('areas', 'genres', 'shop', 'reserves'));
+        return view('shopdata-add', compact('areas', 'genres', 'shop', 'reserves', 'shop_menus'));
     }
 
     public function shopDataAdd(ShopDataRequest $request)
@@ -93,5 +103,26 @@ class StoreManagerController extends Controller
         Shop::find($manager->shop_id)->update($shop_data);
 
         return redirect('manager/shop-data');
+    }
+
+    public function shopMenuAdd(ShopMenuRequest $request)
+    {
+        $manager = Auth::guard('store_manager')->user();
+
+        $shop_id = $manager->shop_id;
+
+        if ($shop_id === null) {
+            session()->flash('shop_name_error', '店舗情報を作成してください');
+            return redirect('manager/shop-data');
+        } else {
+
+            ShopMenu::create([
+                'shop_id' => $shop_id,
+                'menu_name' => $request->menu_name,
+                'price' => $request->price,
+            ]);
+            session()->flash('shop_name_success', 'メニューを作成しました');
+            return redirect('manager/shop-data');
+        }
     }
 }

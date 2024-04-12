@@ -53,7 +53,7 @@ header {
 }
 
 .reserve__table {
-    padding: 1.2rem;
+    padding: 1.2rem 1.2rem 1rem 1.2rem;
     margin-bottom: 2rem;
     width: 85%;
     border: none;
@@ -97,12 +97,12 @@ header {
 .reserve__update-button {
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+    margin-top: 0.2rem;
     text-align: center;
 }
 
 .modal__open-button {
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 1rem;
     font-size: 1rem;
     border: none;
     border-radius: 5px;
@@ -112,14 +112,46 @@ header {
 }
 
 .qrcode__button {
-    padding: 0.5rem 1rem;
-    height: 3rem;
+    padding: 0.3rem 1rem;
     font-size: 1rem;
     border: none;
     border-radius: 5px;
     color: #1a40ff;
     background-color: #fff;
     cursor: pointer;
+}
+
+.pay__form {
+    margin-top: 0.8rem;
+    text-align: center;
+}
+
+.menu__button {
+    text-align: center;
+    margin-top: 0.4rem;
+}
+
+.menu__button button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #1a40ff;
+}
+
+.payed__button {
+    text-align: center;
+    margin-top: 0.4rem;
+}
+
+.payed__button button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #1a40ff;
 }
 
 /* 予約削除モーダルの装飾 */
@@ -322,12 +354,12 @@ i {
 }
 
 .reserved__review-button {
-    margin-top: 1.3rem;
+    margin-top: 2.6rem;
     text-align: center;
 }
 
 .reviewed__button {
-    margin-top: 1.3rem;
+    margin-top: 2.6rem;
     text-align: center;
 }
 
@@ -435,6 +467,14 @@ i {
     .content-left {
         padding: 0.5rem 0;
         width: 100%;
+    }
+
+    .modal__open-button {
+        font-size: 0.8rem;
+    }
+
+    .qrcode__button {
+        font-size: 0.8rem;
     }
 
     .table__wrapper {

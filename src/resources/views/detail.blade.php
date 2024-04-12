@@ -46,11 +46,11 @@
                     @csrf
                     <div class="input__wrapper">
                         <div class="date__input">
-                            <input name="date" type="date" id="dateInput" value="{{ old('date') }}"
+                            <input name="date" type="date" id="date__input" value="{{ old('date') }}"
                                 onchange="showDateValue()">
                         </div>
                         <div class="time__select">
-                            <select name="time" id="selectInput" onchange="showSelectValue()">
+                            <select name="time" id="select__input" onchange="showSelectValue()">
                                 <option value="" @if (old('time') == '') selected @endif></option>
                                 <option value="16:00" @if (old('time') == '16:00') selected @endif>16:00</option>
                                 <option value="17:00" @if (old('time') == '17:00') selected @endif>17:00</option>
@@ -62,7 +62,7 @@
                             </select>
                         </div>
                         <div class="number__select">
-                            <select name="number" id="numberInput" onchange="showNumberValue()">
+                            <select name="number" id="number__input" onchange="showNumberValue()">
                                 <option value="" @if (old('number') == '') selected @endif></option>
                                 <option value="1" @if (old('number') == '1') selected @endif>1人</option>
                                 <option value="2" @if (old('number') == '2') selected @endif>2人</option>
@@ -71,6 +71,19 @@
                                 <option value="5" @if (old('number') == '5') selected @endif>5人</option>
                             </select>
                         </div>
+                        @if (isset($shop_menus))
+                            <div class="shop_menu__select">
+                                <select name="shop_menu_id" id="menu__input">
+                                    <option value="" @if (old('shop_menu_id') == '') selected @endif>
+                                        メニューを選択しない</option>
+                                    @foreach ($shop_menus as $shop_menu)
+                                        <option value="{{ $shop_menu->id }}"
+                                            @if (old('shop_menu_id') == $shop_menu->id) selected @endif>
+                                            {{ $shop_menu->menu_name }}：{{ $shop_menu->price }}円</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
                         <div class="reserve__confirm--table">
                             <table>
                                 <tr>
