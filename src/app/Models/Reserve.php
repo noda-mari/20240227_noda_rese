@@ -13,9 +13,11 @@ class Reserve extends Model
     protected $fillable = [
         'user_id',
         'shop_id',
+        'shop_menu_id',
         'date',
         'time',
         'number',
+        'payed_time'
     ];
 
     public function getTimeAttribute($value)
@@ -36,5 +38,10 @@ class Reserve extends Model
     public function review()
     {
         return $this->hasOne(Review::class);
+    }
+
+    public function shop_menu()
+    {
+        return $this->belongsTo(ShopMenu::class);
     }
 }

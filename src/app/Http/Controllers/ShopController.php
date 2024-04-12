@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Genre;
 use App\Models\Area;
+use App\Models\ShopMenu;
 
 
 
@@ -27,7 +28,15 @@ class ShopController extends Controller
     {
         $shop_detail = Shop::with('area', 'genre')->find($id);
 
-        return view('detail', compact('shop_detail'));
+        $shop_menus = ShopMenu::where('shop_id', $id)->get();
+
+        if ($shop_menus->isEmpty()) {
+            $shop_menus = null;
+            return view('detail', compact('shop_detail', 'shop_menus'));
+        } else {
+
+            return view('detail', compact('shop_detail', 'shop_menus'));
+        }
     }
 
     public function search(Request $request)

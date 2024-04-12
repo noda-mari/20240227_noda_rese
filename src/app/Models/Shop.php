@@ -49,6 +49,10 @@ class Shop extends Model
         return $this->hasOne(StoreManager::class);
     }
 
+    public function shop_menus()
+    {
+        return $this->hasMany(ShopMenu::class);
+    }
 
 
     public function scopeAreaSearch($query, $area_id)

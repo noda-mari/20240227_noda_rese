@@ -52,7 +52,7 @@ class UserController extends Controller
 
         $user = Auth::user();
 
-        $reserves_date = Reserve::with('user', 'shop')->where('user_id', $user_id)->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
+        $reserves_date = Reserve::with('user', 'shop', 'shop_menu')->where('user_id', $user_id)->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
         $favorites = Favorite::with('user', 'shop')->where('user_id', $user_id)->get();
         $reviews = Review::with('reserve')->get();
 
@@ -100,6 +100,7 @@ class UserController extends Controller
             $reserve = Reserve::create([
                 'user_id' => $user_id,
                 'shop_id' => $shop_id,
+                'shop_menu_id' => $request->shop_menu_id,
                 'date' => $date,
                 'time' => $time,
                 'number' => $request->number,

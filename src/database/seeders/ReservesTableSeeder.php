@@ -20,8 +20,9 @@ class ReservesTableSeeder extends Seeder
         Reserve::create([
             'user_id' => '1',
             'shop_id' => '1',
+            'shop_menu_id' => '1',
             'date' => $date->format('Y-m-d'),
-            'time' => '19:00',
+            'time' => '22:00',
             'number' => '3',
         ]);
 
@@ -29,6 +30,7 @@ class ReservesTableSeeder extends Seeder
         Reserve::create([
             'user_id' => '1',
             'shop_id' => '1',
+            'shop_menu_id' => '1',
             'date' => $date->modify('-1 day')->format('Y-m-d'),
             'time' => '19:00',
             'number' => '3',
