@@ -54,6 +54,8 @@ $ git clone git@github.com:noda-mari/20240227_noda_rese.git
 
 $ docker-compose up -d --build
 
+
+
 ### 3. Composer パッケージのインストール
 
 $ composer install
@@ -67,6 +69,10 @@ $cd src
 
 $ composer install
 
+$cd ../
+
+
+
 ### 4. 環境ファイルの設定
 
 $ docker-compose exec php bash &emsp;&emsp; PHP コンテナ内にログイン
@@ -74,6 +80,10 @@ $ docker-compose exec php bash &emsp;&emsp; PHP コンテナ内にログイン
 $ cp .env.example .env &emsp;&emsp; `.env.example` ファイルを `.env` という名前でコピー
 
 $ exit
+
+$ code .
+
+
 
 ### 5. 環境ファイルの設定
 
@@ -87,18 +97,30 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user  
 DB_PASSWORD=laravel_pass
 
+
+
 ### 6. アプリケーションキーの生成
 
+$ docker-compose exec php bash &emsp;&emsp; PHP コンテナ内にログイン
+
 $ php artisan key:generate
+
+.envファイルの3行目にキーが生成されます。
+
+APP_KEY= <ここに生成されます>
+
+
 
 ### 7 シンボリックリンクを貼る
 
 $ php artisan storage:link
 
 ※ storage/に保存、書き換えを行う際 Permissionエラーが出る場合があります。  
-その際は、下記のコードを使い権限を変更してください。
+&emsp;&emsp;下記のコードを使い権限を変更してください。
 
-$ sudo chmod -R 777 *
+$ sudo chmod -R 777 *  
+
+
 
 ### 8. データベースのマイグレーション
 
@@ -109,13 +131,15 @@ $ php artisan migrate
 $ php artisan db:seed
 
 
+
+
 ### 10. スケジューラーの実行
 
 cronエントリを追加する
 
 $ crontab -e
 
-* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1  
+<&emsp;&emsp;* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1&emsp;&emsp;>  
 
 cronが動かない場合は下記のコードを使い、１分ごとにスケジューラーを呼び出します。
 
@@ -124,7 +148,9 @@ $ docker-compose exec php bash
 $ php artisan schedule:work
 
 
-## メール認証の確認に使用するアプリの設定方法
+
+
+## メール認証,リマインドメール等に使用するアプリの設定方法
 
 [Mailtrap](https://mailtrap.io/)
 無料で利用するのに、クレジットカードの登録などは不要です。  
@@ -161,6 +187,8 @@ Verify Email Addressをクリックして認証完了です。
 
 $ php artisan config:clear
 
+
+
 ## アプリで使用する決済アプリの設定方法
 
 [Stripe](https://dashboard.stripe.com)
@@ -179,8 +207,12 @@ APIキーをクリックします。
 STRIPE_KEY= コピーしたキーを貼り付け  
 STRIPE_SECRET= コピーしたキーを貼り付け  
 
+
+
 また、デフォルトでは価格の単価がusdなので  
 .envファイルにCASHIER_CURRENCYを設定してjpyを設定します。  
+
+
 
 CASHIER_CURRENCY=jpy    &emsp;&emsp;&emsp;こちらを追加してください。  
 
@@ -190,26 +222,32 @@ CASHIER_CURRENCY=jpy    &emsp;&emsp;&emsp;こちらを追加してください�
 $ php artisan config:clear
 
 
+
+
 ## 各種機能のテスト用アカウント情報
 
-ユーザー権限  
+###  ユーザー権限  
 name : 山田花子  
 email : hanako@test.com  
 password : hanako0000  
 
-テスト決済時のカード情報  
+### テスト決済時のカード情報  
 email : hanako@test.com  
 カード番号 : 4242 4242 4242 4242  
 有効期限 : 12/27  
 セキュリティコード : 123  
 
-管理者権限  
+
+
+### 管理者権限  
 name : テスト管理者  
 email : test@example.com  
 password : test0000  
 管理者でのログインページ : http://localhost/admin/login
 
-店舗管理者権限  
+
+
+### 店舗管理者権限  
 name : テスト店舗管理者  
 email : shop@example.com  
 password : shop0000  
@@ -218,4 +256,12 @@ password : shop0000
 店舗情報ページの予約情報、レビューの確認は、こちらのアカウントで確認いただけると早いと思います。  
 
 こちらを使用して、ログインお願いいたします。  
-ユーザー未ログイン時の動きも見ていただけると嬉しいです。
+ユーザー未ログイン時の動きも見ていただけると嬉しいです。  
+
+###　採点者様へ
+
+決済機能を実装する際に、店舗のコースメニューの作成を追加したのですが  
+メニューの変更、削除の機能までは実装できませんでした。  
+また、予約の変更で事前にメニューを選択していても、メニューの変更はできません。  
+まだまだ実装しなければいけないところがありますが、  
+未完のまま提出となってしまい、申し訳ありません。
