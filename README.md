@@ -39,6 +39,8 @@ mysql : 8.0.26
 Docker : 24.0.6  
 
 ## テーブル設計
+![スクリーンショット 2024-04-06 235235](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/c0d67c92-b1bb-45ff-a3b4-75ffbce4b27c)
+![スクリーンショット 2024-04-06 235416](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/8deb3e5f-8ae1-4f35-9e5b-ac27e6ae552c)
 
 ## ER図
 ![rese_er drawio](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/91527c75-5744-4884-907b-4cd4ef82814e)
