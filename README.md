@@ -41,7 +41,9 @@ Docker : 24.0.6
 ## テーブル設計
 ![スクリーンショット 2024-04-06 235235](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/c0d67c92-b1bb-45ff-a3b4-75ffbce4b27c)
 ![スクリーンショット 2024-04-06 235416](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/8deb3e5f-8ae1-4f35-9e5b-ac27e6ae552c)
-
+![スクリーンショット 2024-04-14 182124](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/cf5e7e66-b3af-471a-9880-e2a7c7644a69)
+![スクリーンショット 2024-04-14 182138](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/2553b509-35e6-4b3e-bcd4-8ff26e7e2456)
+![スクリーンショット 2024-04-14 182202](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/1fedc7fe-8cbf-4a2e-b120-bb638bb813a6)
 ## ER図
 ![rese_er drawio](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/91527c75-5744-4884-907b-4cd4ef82814e)
 
