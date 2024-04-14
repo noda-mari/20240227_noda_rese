@@ -162,6 +162,8 @@ $ php artisan schedule:work
 
 アカウントは、Googleアカウントなどで連携するか、メールアドレスでアカウントを作成できます。
 
+![スクリーンショット 2024-02-13 025215](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/06912e9e-bef7-4b19-93c4-23c9e9c8e4b4)
+
 サインイン後、受信トレイの設定が開かれます。
 ![スクリーンショット 2024-02-13 173558](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/a2a9a6e6-e0e5-49b3-98e9-0a591c10e270)
 
