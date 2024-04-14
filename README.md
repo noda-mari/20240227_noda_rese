@@ -208,6 +208,7 @@ $ php artisan config:clear
 ![スクリーンショット 2024-04-10 191530](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/9ebfcf62-0bbf-429c-9a8f-dd21550c66d1)
 
 APIキーをクリックします。  
+![スクリーンショット 2024-04-10 191642](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/72b6ccc5-6f90-4337-a41c-84cdd2a32aec)
 
 
 公開可能キーと、シークレットキーをそれぞれコピーし、env.ファイルに追加します。
