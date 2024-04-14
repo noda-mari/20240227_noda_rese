@@ -41,6 +41,7 @@ Docker : 24.0.6
 ## テーブル設計
 
 ## ER図
+![rese_er drawio](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/91527c75-5744-4884-907b-4cd4ef82814e)
 
 ## 環境構築
 
