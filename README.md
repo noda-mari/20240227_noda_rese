@@ -39,8 +39,12 @@ mysql : 8.0.26
 Docker : 24.0.6  
 
 ## テーブル設計
-
+![スクリーンショット 2024-04-06 235235](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/c0d67c92-b1bb-45ff-a3b4-75ffbce4b27c)
+![スクリーンショット 2024-04-06 235416](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/8deb3e5f-8ae1-4f35-9e5b-ac27e6ae552c)
+![スクリーンショット 2024-04-14 182124](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/cf5e7e66-b3af-471a-9880-e2a7c7644a69)
+![スクリーンショット 2024-04-14 182722](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/fdea806e-290f-4ca2-a0e9-ec9e691b204d)
 ## ER図
+![rese_er drawio](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/91527c75-5744-4884-907b-4cd4ef82814e)
 
 ## 環境構築
 
@@ -159,8 +163,11 @@ $ php artisan schedule:work
 アカウントは、Googleアカウントなどで連携するか、メールアドレスでアカウントを作成できます。
 
 サインイン後、受信トレイの設定が開かれます。
+![スクリーンショット 2024-02-13 025215](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/06912e9e-bef7-4b19-93c4-23c9e9c8e4b4)
 
 プルダウンから「Laravel 7.x and 8.x」を選択します。  
+![スクリーンショット 2024-02-13 173558](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/a2a9a6e6-e0e5-49b3-98e9-0a591c10e270)
+
 Laravelの.envファイルにそのまま追記できる形式で、サーバー・ユーザー・パスワードなどが記述されています。  
 右上のCopyボタンをクリックし、Laravelプロジェクトの.envファイルに貼り付けて、サーバー設定を変更してください。
 
@@ -197,11 +204,15 @@ $ php artisan config:clear
 
 .envにアクセスキーを設定します。  
 
-ページ上部の’管理者’をクリックします。  
+ページ上部の’管理者’または’管理者向けAPIキー’をクリックします。  
+![スクリーンショット 2024-04-10 191530](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/9ebfcf62-0bbf-429c-9a8f-dd21550c66d1)
 
 APIキーをクリックします。  
+![スクリーンショット 2024-04-10 191642](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/72b6ccc5-6f90-4337-a41c-84cdd2a32aec)
+
 
 公開可能キーと、シークレットキーをそれぞれコピーし、env.ファイルに追加します。
+![スクリーンショット 2024-04-10 191738](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/81d9b5ce-aa11-4de2-a757-4a0d88d98fa8)
 
 
 STRIPE_KEY= コピーしたキーを貼り付け  
@@ -256,8 +267,6 @@ password : shop0000
 ※予約とレビューのダミーデータは'テスト店舗管理者'に紐ずいている店舗のみです。  
 店舗情報ページの予約情報、レビューの確認は、こちらのアカウントで確認いただけると早いと思います。  
 こちらを使用して、ログインお願いいたします。  
-
-
 
 ### 採点者様へ
 
