@@ -36,6 +36,45 @@
                     <div class="shop__descripcion">
                         <p>{{ $shop_detail->description }}</p>
                     </div>
+                    <div class="review__index">
+                        <form action="/review/index/{{ $shop_detail->id }}" method="GET">
+                            <button class="review__index-button">すべての口コミ情報</button>
+                        </form>
+                    </div>
+                    @if (Auth::guard('web')->check())
+                        @isset($review)
+                            <div class="review__box">
+                                <div class="review__link">
+                                    <a href="/review2/{{ $shop_detail->id }}">口コミを編集</a>
+                                    <a href="/review2/delete/{{ $review->id }}">口コミを削除</a>
+                                </div>
+                                <div class="review__stars">
+                                    <input id="star5" type="radio" name="review_star" value="5"
+                                        {{ $review->review_star == '5' ? 'checked' : '' }}><label for="star5">★</label>
+                                    <input id="star4" type="radio" name="review_star" value="4"
+                                        {{ $review->review_star == '4' ? 'checked' : '' }}><label for="star4">★</label>
+                                    <input id="star3" type="radio" name="review_star" value="3"
+                                        {{ $review->review_star == '3' ? 'checked' : '' }}><label for="star3">★</label>
+                                    <input id="star2" type="radio" name="review_star" value="2"
+                                        {{ $review->review_star == '2' ? 'checked' : '' }}><label for="star2">★</label>
+                                    <input id="star1" type="radio" name="review_star" value="1"
+                                        {{ $review->review_star == '1' ? 'checked' : '' }}><label for="star1">★</label>
+                                </div>
+                                <div class="review__comment">
+                                    <p>{{ $review->review_comment }}</p>
+                                </div>
+                                @isset($review->review_img)
+                                    <div class="review__img">
+                                        <img src="{{ asset('storage/images/' . $review->review_img) }}" alt="レビューの画像">
+                                    </div>
+                                @endisset
+                            </div>
+                        @else
+                            <div class="review__link">
+                                <a href="/review2/{{ $shop_detail->id }}">口コミを投稿</a>
+                            </div>
+                        @endisset
+                    @endif
                 </div>
             </div>
         </div>

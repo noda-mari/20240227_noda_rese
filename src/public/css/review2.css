@@ -1,0 +1,225 @@
+.content {
+    display: flex;
+}
+
+.content-left {
+    width: 40%;
+    padding: 1rem;
+}
+
+.content__description p {
+    font-size: 2rem;
+}
+
+.shops-card {
+    margin-bottom: 1.5rem;
+    width: 70%;
+    height: 17rem;
+    border-radius: 5px;
+    box-shadow: 4px 4px 6px #808080;
+    background-color: #fff;
+}
+
+.shop__img {
+    width: 100%;
+    height: 50%;
+}
+
+.shop__img img {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card__content {
+    padding: 1rem 1rem;
+}
+
+.card__title {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.shop__tag {
+    display: flex;
+}
+
+.shop__tag small {
+    margin: 0rem 0.5rem 0 0;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.detail-button {
+    padding: 0.3rem 1rem;
+    border-radius: 6px;
+    border: solid 2px #1a40ff;
+    color: #fff;
+    background-color: #1a40ff;
+    cursor: pointer;
+}
+
+.favorite a {
+    text-decoration: none;
+}
+
+.before {
+    font-size: 2rem;
+    color: #a0a0a0;
+}
+
+.liked {
+    font-size: 2rem;
+    color: red;
+}
+
+.content-right {
+    width: 60%;
+}
+
+.review__box-title {
+    display: flex;
+}
+
+.review__title {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.error {
+    margin-left: 3rem;
+    color: #ff1493;
+}
+
+.review__stars {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.review__stars input[type="radio"] {
+    display: none;
+}
+
+.review__stars label {
+    color: #d2d2d2;
+    line-height: 2rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.review__stars label:hover,
+.review__stars label:hover ~ label,
+.review__stars input[type="radio"]:checked ~ label {
+    color: #1a40ff;
+}
+
+.review__textarea textarea {
+    padding: 0.5rem;
+    width: 100%;
+    resize: none;
+    border: solid 1px #dcdcdc;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: 0;
+}
+
+.text__counter--box {
+    text-align: right;
+}
+
+.text__counter {
+    margin: 0 0 0.5rem 0;
+}
+
+#demo.err {
+    background-color: #fff6f6;
+    border: 1px solid #ffa3a3;
+}
+#text-length > span {
+    margin-left: 10px;
+    color: #d11a1a;
+    font-weight: bold;
+}
+
+.container {
+    padding: 0;
+}
+
+.drop__area {
+    padding: 2rem 1rem;
+    border: 2px dashed #ccc;
+    text-align: center;
+}
+
+.file__link {
+    text-decoration: none;
+}
+
+.form__button {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.form__button button {
+    padding: 0.5rem 1rem;
+    width: 30%;
+    border-radius: 5px;
+    border: none;
+    background-color: #fefefe;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+}
+
+/* max-width:1024px */
+
+@media screen and (max-width: 1024px) {
+}
+
+/* max-width:768px */
+
+@media screen and (max-width: 768px) {
+    .shops-card {
+        width: 90%;
+    }
+}
+
+/* max-width:480px */
+
+@media screen and (max-width: 480px) {
+    .content {
+        display: block;
+    }
+
+    .content-left {
+        width: 100%;
+    }
+
+    .content__description {
+        text-align: center;
+    }
+
+    .shops-card {
+        margin: 0 auto;
+    }
+
+    .content-right {
+        width: 100%;
+    }
+
+    .review__box {
+        margin-top: 2rem;
+    }
+
+    .form__button button {
+        width: 50%;
+    }
+}

@@ -64,9 +64,68 @@ body {
     margin-left: 1rem;
 }
 
+.review__index-button {
+    padding: 0.5rem;
+    width: 100%;
+    border: none;
+    background-color: #668cff;
+    color: #f5f5f5;
+}
+
+.review__link {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.review__link a {
+    margin-left: 1rem;
+    text-decoration: underline;
+    color: #232222;
+}
+
+.review__box {
+    margin-top: 2rem;
+    border-top: solid 1px #c2c2c2;
+    border-bottom: solid 1px #c2c2c2;
+}
+
+.review__stars {
+    margin: 1rem 0rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    pointer-events: none;
+}
+
+.review__stars input[type="radio"] {
+    display: none;
+}
+
+.review__stars label {
+    color: #d2d2d2;
+    line-height: 2rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.review__stars label:hover,
+.review__stars label:hover ~ label,
+.review__stars input[type="radio"]:checked ~ label {
+    color: #1a40ff;
+}
+
 .content-right {
     padding: 2rem 2.5rem 3rem 5rem;
     width: 50%;
+}
+
+.review__img {
+    margin-bottom: 1rem;
+    width: 40%;
+}
+
+.review__img img {
+    width: 100%;
 }
 
 .reserve__form {
@@ -157,6 +216,18 @@ th {
     border: none;
     background-color: #1414cf;
     cursor: pointer;
+}
+
+/*  max-width: 1024px */
+
+@media screen and (max-width: 1024px) {
+    .content-left {
+        padding: 2rem 1rem 2rem 2rem;
+    }
+
+    .content-right {
+        padding: 2rem 2rem 2rem 1rem;
+    }
 }
 
 /*  max-width: 786px */

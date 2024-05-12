@@ -30,6 +30,6 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         ShopMenu::factory(17)->create();
         Reserve::factory(6)->create();
-        Review::factory(10)->create();
+        Review::factory(50)->create();
     }
 }

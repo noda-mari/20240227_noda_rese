@@ -29,9 +29,67 @@ h1 {
     color: #1a40ff;
 }
 
+.header__nav-box {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+}
+
+.sort__link-list label {
+    display: block;
+    position: relative;
+    padding: 1rem 0.3rem;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    border: solid 1px #dcdcdc;
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px #808080;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.sort__link-list input[type="checkbox"] {
+    display: none;
+}
+
+.sort__list {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.switch:checked + .sort__list {
+    position: absolute;
+    margin: 0 auto;
+    text-align: center;
+    width: 20%;
+    height: auto;
+    background: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.dropdown__list {
+    padding: 0.5rem;
+}
+
+.dropdown__list a {
+    text-decoration: none;
+}
+
+.dropdown__list a:hover {
+    color: #fefefe;
+}
+
+.dropdown__list:hover {
+    background-color: #a4b2f7;
+    color: #fefefe;
+}
+
 .header__nav {
     align-items: center;
-    width: 50%;
+    width: 70%;
     border: solid 1px #dcdcdc;
     border-radius: 3px;
     box-shadow: 2px 2px 2px #808080;
@@ -201,11 +259,57 @@ button {
     cursor: pointer;
 }
 
+/* max-width:1024px */
+@media screen and (max-width: 1024px) {
+    body {
+        padding: 1rem;
+    }
+
+    .switch:checked + .sort__list {
+        width: 16%;
+    }
+
+    .shops-card__wrapper {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .shops-card__wrapper::before {
+        width: 23%;
+    }
+    .shops-card__wrapper::after {
+        content: "";
+        display: block;
+        width: 23%;
+    }
+
+    .shops-card {
+        margin-bottom: 1.5rem;
+        width: 23%;
+        height: 16rem;
+        border-radius: 5px;
+        box-shadow: 4px 4px 6px #808080;
+        background-color: #fff;
+    }
+}
+
 /* max-width:768px */
 
 @media screen and (max-width: 768px) {
     body {
         padding: 1.8rem;
+    }
+
+    .header {
+        display: block;
+    }
+
+    .header__nav-box {
+        margin-top: 1rem;
+        width: 100%;
     }
 
     .header__inner {
@@ -228,8 +332,30 @@ button {
         width: 60%;
     }
 
+    .header__nav-box {
+        display: block;
+        width: 100%;
+    }
+
+    .switch:checked + .sort__list {
+        width: 80%;
+    }
+
+    form {
+        display: block;
+    }
+
+    li {
+        margin-top: 0.5rem;
+    }
+
     .header__nav {
-        display: none;
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+
+    .shops-card__wrapper {
+        padding: 0rem;
     }
 
     .shops-card {

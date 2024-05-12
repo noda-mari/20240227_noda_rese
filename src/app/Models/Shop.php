@@ -12,11 +12,11 @@ class Shop extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'area_id',
         'genre_id',
+        'name',
         'description',
-        'shop_img'
+        'shop_img',
     ];
 
     public function users()
@@ -42,6 +42,11 @@ class Shop extends Model
     public function reserves()
     {
         return $this->hasMany(Reserve::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
     public function store_manager()

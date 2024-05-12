@@ -13,6 +13,7 @@ use App\Models\Shop;
 use App\Models\StoreManager;
 use App\Models\Reserve;
 use App\Models\ShopMenu;
+use App\Models\Review;
 
 use Carbon\Carbon;
 
@@ -33,14 +34,16 @@ class StoreManagerController extends Controller
         $areas = Area::all();
         $genres = Genre::all();
 
+        $reviews = Review::where('shop_id',$shop_id)->get();
+
         if ($shop_id) {
             $reserves = Reserve::with('user', 'shop', 'review')->where('shop_id', $shop_id)->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
             $shop_menus = ShopMenu::where('shop_id', $shop_id)->get();
             if ($shop_menus->isEmpty()) {
                 $shop_menus = null;
-                return view('shopdata-add', compact('areas', 'genres', 'shop', 'reserves', 'shop_menus'));
+                return view('shopdata-add', compact('areas', 'genres', 'shop', 'reserves', 'shop_menus','reviews'));
             } else {
-                return view('shopdata-add', compact('areas', 'genres', 'shop', 'reserves', 'shop_menus'));
+                return view('shopdata-add', compact('areas', 'genres', 'shop', 'reserves', 'shop_menus', 'reviews'));
             }
         } else {
             $reserves = null;
@@ -48,7 +51,7 @@ class StoreManagerController extends Controller
         }
 
 
-        return view('shopdata-add', compact('areas', 'genres', 'shop', 'reserves', 'shop_menus'));
+        return view('shopdata-add', compact('areas', 'genres', 'shop', 'reserves', 'shop_menus', 'reviews'));
     }
 
     public function shopDataAdd(ShopDataRequest $request)

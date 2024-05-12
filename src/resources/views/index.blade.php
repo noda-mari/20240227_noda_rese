@@ -24,37 +24,48 @@
             </form>
             <h1>Rese</h1>
         </div>
-        <div class="header__nav">
-            <nav>
-                <ul>
-                    <form action="/shop/search" method="get">
-                        @csrf
-                        <li>
-                            <select name="area_id">
-                                <option value="">All area&nbsp;&nbsp;&nbsp;</option>
-                                @foreach ($areas as $area)
-                                    <option value="{{ $area['id'] }}">{{ $area['name'] }}</option>
-                                @endforeach
-                            </select>
-                        </li>
-                        <li>
-                            <select name="genre_id">
-                                <option value="">All genre</option>
-                                @foreach ($genres as $genre)
-                                    <option value="{{ $genre['id'] }}">{{ $genre['name'] }}</option>
-                                @endforeach
-                            </select>
-                        </li>
-                        <li>
-                            <button>
-                                <img src="{{ asset('icons/saerch2.png') }}" alt="">
-                            </button>
-                            <input class="search__input" type="text" name="keyword" value="{{ old('keyword') }}"
-                                placeholder="search…">
-                        </li>
-                    </form>
-                </ul>
-            </nav>
+        <div class="header__nav-box">
+            <div class="sort__link-list">
+                <label for="sort">並び替え：評価高/低</label>
+                <input type="checkbox" id="sort" class="switch">
+                <div class="sort__list">
+                    <div class="dropdown__list"><a href="/sort/random/">ランダム</a></div>
+                    <div class="dropdown__list"><a href="/sort/review/desc">評価が高い順</a></div>
+                    <div class="dropdown__list"><a href="/sort/review/asc">評価が低い順</a></div>
+                </div>
+            </div>
+            <div class="header__nav">
+                <nav>
+                    <ul>
+                        <form action="/shop/search" method="get">
+                            @csrf
+                            <li>
+                                <select name="area_id">
+                                    <option value="">All area&nbsp;&nbsp;&nbsp;</option>
+                                    @foreach ($areas as $area)
+                                        <option value="{{ $area['id'] }}">{{ $area['name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </li>
+                            <li>
+                                <select name="genre_id">
+                                    <option value="">All genre</option>
+                                    @foreach ($genres as $genre)
+                                        <option value="{{ $genre['id'] }}">{{ $genre['name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </li>
+                            <li>
+                                <button>
+                                    <img src="{{ asset('icons/saerch2.png') }}" alt="">
+                                </button>
+                                <input class="search__input" type="text" name="keyword" value="{{ old('keyword') }}"
+                                    placeholder="search…">
+                            </li>
+                        </form>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
     <main>

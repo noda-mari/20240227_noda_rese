@@ -169,4 +169,29 @@
             </form>
         </div>
     </div>
+    <div class="import__container">
+        <div class="content__title">
+            <p>CSVインポート機能</p>
+            @if (session('csv-error'))
+                <div class="error-message">
+                    {{ session('csv-error') }}
+                </div>
+            @elseif (session('import-success'))
+                <div class="success-message">
+                    {{ session('import-success') }}
+                </div>
+            @elseif(session('import-error'))
+                <div class="error-message">
+                    {{ session('import-error') }}
+                </div>
+            @endif
+        </div>
+        <div class="import__box">
+            <form action="/admin/cvs/import" method="POST" enctype='multipart/form-data'>
+                @csrf
+                <input type="file" name="csvFile" class="" id="csvFile">
+                <button class="import__button" type="submit">インポート</button>
+            </form>
+        </div>
+    </div>
 @endsection
