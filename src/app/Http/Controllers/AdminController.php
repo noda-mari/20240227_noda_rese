@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\User;
+use App\Models\Review;
+use App\Models\Shop;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\EmailRequest;
 use App\Mail\NotificationEmail;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -104,5 +107,72 @@ class AdminController extends Controller
 
             return redirect()->route('admin.page')->with(compact('mail'));
         }
+    }
+
+    public function reviewDelete($id)
+    {
+
+        $review = Review::find($id);
+
+        $shop_id = $review->shop_id;
+
+        Review::find($id)->delete();
+
+        return redirect()->route('review.index', ['id' => $shop_id]);
+    }
+
+    public function csvImport(Request $request)
+    {
+
+
+        if ($request->hasFile('csvFile')) {
+
+            $file = $request->file('csvFile');
+
+            $rows = array_map('str_getcsv', file($file));
+
+            array_shift($rows);
+
+            foreach ($rows as $row) {
+
+                $validator = Validator::make($row, [
+                    '4' => 'regex:/\.(jpg,png,gif)$/'
+                ]);
+
+                if ($validator->fails()) {
+                    return redirect()->back()->with('csv-error', '拡張子はjpeg,pngでなければいけません。');
+                }
+            }
+
+            $path = $file->getRealPath();
+
+            $fp = fopen($path, 'r');
+
+            fgetcsv($fp);
+
+            while (($csvData = fgetcsv($fp)) !== FALSE) {
+
+                $this->InsertCsvData($csvData);
+            }
+
+            fclose($fp);
+
+            return redirect()->back()->with('import-success', 'CSVファイルがインポートされました。');
+        } else {
+
+            return redirect()->back()->with('import-error', 'ファイルが存在しません。');
+        }
+    }
+
+
+    public function InsertCsvData($csvData)
+    {
+        Shop::create([
+            'area_id' => $csvData[0],
+            'genre_id' => $csvData[1],
+            'name' => $csvData[2],
+            'description' => $csvData[3],
+            'shop_img' => $csvData[4],
+        ]);
     }
 }

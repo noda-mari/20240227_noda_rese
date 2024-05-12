@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\favorite;
 use App\Models\Reserve;
 use App\Models\Review;
+use App\Models\Shop;
 
 use DateTime;
 use Carbon\Carbon;
@@ -151,18 +152,126 @@ class UserController extends Controller
         return view('review', compact('reserve_id', 'shop_name', 'shop_id'));
     }
 
+
     public function reviewAdd(ReviewRequest $request, $id)
     {
 
         $reserve_id = $id;
 
+        $user_id = Auth::id();
+
+        $reserve = Reserve::find($id);
+
+        $shop_id = $reserve->shop_id;
+
         Review::create([
             'reserve_id' => $reserve_id,
+            'user_id' => $user_id,
+            'shop_id' => $shop_id,
             'review_star' => $request->review_star,
             'review_comment' => $request->review_comment,
         ]);
 
 
         return view('review-thanks');
+    }
+
+    public function reviewView($id)
+    {
+        $user_id =  Auth::id();
+
+        $shop = Shop::find($id);
+
+        $review = Review::with('user', 'shop')->where('shop_id', $id)->where('user_id', $user_id)->first();
+
+        return view('review2', compact('shop', 'review'));
+    }
+
+    public function reviewStore(Request $request, $id)
+    {
+
+        dd($request);
+
+        $user_id = Auth::id();
+
+        $shop_id = $id;
+
+        if ($request->review_img) {
+            $file_name = $request->review_img->getClientOriginalName();
+
+            $request->review_img->storeAs('public/images', $file_name);
+
+            $request['review_img'] = $file_name;
+
+            Review::create([
+                'shop_id' => $shop_id,
+                'user_id' => $user_id,
+                'review_star' => $request->review_star,
+                'review_comment' => $request->review_comment,
+                'review_img' => $file_name,
+            ]);
+
+            return view('review-thanks');
+        }
+
+
+        Review::create([
+            'shop_id' => $shop_id,
+            'user_id' => $user_id,
+            'review_star' => $request->review_star,
+            'review_comment' => $request->review_comment,
+        ]);
+
+        return view('review-thanks');
+    }
+
+    public function reviewUpdate(ReviewRequest $request, $id)
+    {
+
+        if ($request->review_img) {
+            $file_name = $request->review_img->getClientOriginalName();
+
+            $request->review_img->storeAs('public/images', $file_name);
+
+            $request['review_img'] = $file_name;
+
+            $update_data = [
+                'review_star' => $request->review_star,
+                'review_comment' => $request->review_comment,
+                'review_img' => $file_name,
+            ];
+
+            Review::find($id)->update($update_data);
+
+            $review = Review::find($id);
+
+            $shop_id = $review->shop_id;
+
+            return redirect()->route('review2', ['id' => $shop_id])->with('review');
+        }
+
+        $update_data = [
+            'review_star' => $request->review_star,
+            'review_comment' => $request->review_comment,
+        ];
+
+        Review::find($id)->update($update_data);
+
+        $review = Review::find($id);
+
+        $shop_id = $review->shop_id;
+
+        return redirect()->route('review2', ['id' => $shop_id])->with('review');
+    }
+
+    public function reviewDelete($id)
+    {
+        $review = Review::find($id);
+
+        $shop_id = $review->shop_id;
+
+        Review::find($id)->delete();
+
+        return redirect()->route('detail', ['id' => $shop_id]);
     }
 }

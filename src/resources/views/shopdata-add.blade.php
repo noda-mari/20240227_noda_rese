@@ -237,7 +237,6 @@
                             <th>日付</th>
                             <th>時間</th>
                             <th>人数</th>
-                            <th>レビュー</th>
                         </tr>
                         @foreach ($reserves as $reserve)
                             <tr>
@@ -245,36 +244,63 @@
                                 <td>{{ $reserve->date }}</td>
                                 <td>{{ $reserve->time }}</td>
                                 <td>{{ $reserve->number . '人' }}</td>
-                                <td>
-                                    @if (!$reserve->review)
-                                        {{ 'レビューはされていません' }}
-                                    @else
-                                        <button class="review__model-btn"
-                                            data-star="{{ $reserve->review->review_star }}"
-                                            data-comment="{{ $reserve->review->review_comment }}">レビュー</button>
-                                        {{-- ここからレビューモーダル --}}
-                                        <div id="review__modal">
-                                            <div class="modal__content">
-                                                <div class="content__header">
-                                                    <span class="modal__close-button">×</span>
-                                                </div>
-                                                <div class="review__ster">
-                                                    <p>評価</p>
-                                                    <div class="star"></div>
-                                                </div>
-                                                <div class="review__comment">
-                                                    <p>コメント</p>
-                                                    <div class="comment"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </td>
                             </tr>
                         @endforeach
                     </table>
                 @endif
             </div>
+        </div>
+        <div class="content__title">
+            <p>口コミ一覧</p>
+        </div>
+        <div class="review__list-wrapper">
+            <table>
+                <tr class="table__header">
+                    <th>評価</th>
+                    <th>コメント</th>
+                    <th>画像</th>
+                </tr>
+                @foreach ($reviews as $review)
+                    <tr class="table__description">
+                        <td>
+                            <div class="review__stars">
+                                @if ($review->review_star == 1)
+                                    {{ '★' }}
+                                @elseif($review->review_star == 2)
+                                    {{ '★★' }}
+                                @elseif($review->review_star == 3)
+                                    {{ '★★★' }}
+                                @elseif($review->review_star == 4)
+                                    {{ '★★★★' }}
+                                @elseif($review->review_star == 5)
+                                    {{ '★★★★★' }}
+                                @endif
+                            </div>
+                        </td>
+                        <td>
+                            {{ $review->review_comment }}
+                        </td>
+                        <td class="review__img-td">
+                            @isset($review->review_img)
+                                <div class="review__img">
+                                    <img src="{{ asset('storage/images/' . $review->review_img) }}" alt="レビューの画像">
+                                </div>
+                            @else
+                                <div class="review_img-null">
+                                    {{ '画像なし' }}
+                                </div>
+                            @endisset
+                        </td>
+                        @if (Auth::guard('admin')->check())
+                            <td>
+                                <div class="review__delete-link">
+                                    <a href="/admin/review2/delete/{{ $review->id }}">削除</a>
+                                </div>
+                            </td>
+                        @endif
+                    </tr>
+                @endforeach
+            </table>
         </div>
         <script src="{{ asset('js/review.js') }}"></script>
     </main>

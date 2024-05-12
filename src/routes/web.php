@@ -21,6 +21,7 @@ use App\Http\Controllers\Manager\ManagerLogoutController;
 use App\Http\Controllers\QrcodeController;
 use App\Http\Controllers\PaymentController;
 use App\Models\StoreManager;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,8 +64,14 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LogoutController::class, 'destroy']);
 
 Route::get('/', [ShopController::class, 'index']);
+// 店舗のソート機能追加
+Route::get('/sort/review/desc', [ShopController::class, 'sortDesc']);
+Route::get('/sort/review/asc', [ShopController::class, 'sortAsc']);
+Route::get('/sort/random', [ShopController::class, 'sortRandom']);
+// ここまで
 Route::get('/shop/search', [ShopController::class, 'search']);
-Route::get('/detail/{id}', [ShopController::class, 'shopDetail']);
+Route::get('/detail/{id}', [ShopController::class, 'shopDetail'])->name('detail');
+Route::get('/review/index/{id}', [ShopController::class, 'reviewIndex'])->name('review.index');
 Route::get('/menu', [MenuController::class, 'menuView']);
 Route::post('/favorite', [UserController::class, 'favorite'])->name('users.favorite');
 Route::get('/favorite-delete/{id}', [UserController::class, 'favoriteDelete']);
@@ -83,6 +90,11 @@ Route::group(['prefix' => 'reserve'], function () {
 
 Route::get('/review/{id}', [UserController::class, 'reviewIndex']);
 Route::post('/review/{id}', [UserController::class, 'reviewAdd']);
+// テストの口コミ機能を追加しました。
+Route::get('/review2/{id}', [UserController::class, 'reviewView'])->name('review2');
+Route::post('/review2/{id}', [UserController::class, 'reviewStore']);
+Route::post('/review2/update/{id}', [UserController::class, 'reviewUpdate']);
+Route::get('/review2/delete/{id}', [UserController::class, 'reviewDelete']);
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('register', [AdminRegisterController::class, 'create'])
@@ -97,12 +109,15 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('menu', [AdminController::class, 'showMenu']);
 
+
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('admin-page', [AdminController::class, 'index'])
             ->name('admin.page');
         Route::post('mail', [AdminController::class, 'sendMail']);
         Route::post('area/add', [AdminController::class, 'areaAdd']);
         Route::post('genre/add', [AdminController::class, 'genreAdd']);
+        Route::get('review2/delete/{id}', [AdminController::class, 'reviewDelete']);
+        Route::post('cvs/import', [AdminController::class, 'csvImport']);
     });
 });
 
