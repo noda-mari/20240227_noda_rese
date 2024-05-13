@@ -298,10 +298,17 @@ area_id,genre_id,name,description,shop_img
 下記の表のidを使用ください。
 
 
-
 例:  
 
 area_id,genre_id,name,description,shop_img  
 1,2,テスト,テスト,http//image.jpeg  
 
+### 実装できかなった箇所  
 
+1.店舗一覧のソート機能を、検索をかけた店舗にソートをかける機能  
+
+2.SVCファイルで登録した店舗画像を表示する
+
+エラーで躓いてしまい、最後まで実装できませんでした。
+
+申し訳ありません。
