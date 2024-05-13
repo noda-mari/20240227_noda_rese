@@ -315,6 +315,10 @@
         display: block;
     }
 
+    .shop-data__input-box {
+        padding: 1rem 0.5rem;
+    }
+
     .flex__box {
         display: block;
     }

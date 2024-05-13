@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\EmailRequest;
 use App\Mail\NotificationEmail;
-use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -126,40 +125,31 @@ class AdminController extends Controller
 
 
         if ($request->hasFile('csvFile')) {
-
             $file = $request->file('csvFile');
-
-            $rows = array_map('str_getcsv', file($file));
-
+            $path = $file->getRealPath();
+            $rows = array_map('str_getcsv', file($path));
             array_shift($rows);
 
             foreach ($rows as $row) {
 
-                $validator = Validator::make($row, [
-                    '4' => 'regex:/\.(jpg,png,gif)$/'
-                ]);
+                $imageUrl = $row[4];
 
-                if ($validator->fails()) {
+                $extension = pathinfo($imageUrl, PATHINFO_EXTENSION);
+
+                if (!in_array(strtolower($extension), ['jpeg', 'png'])) {
                     return redirect()->back()->with('csv-error', '拡張子はjpeg,pngでなければいけません。');
                 }
             }
 
-            $path = $file->getRealPath();
-
             $fp = fopen($path, 'r');
-
             fgetcsv($fp);
-
             while (($csvData = fgetcsv($fp)) !== FALSE) {
-
                 $this->InsertCsvData($csvData);
             }
-
             fclose($fp);
 
             return redirect()->back()->with('import-success', 'CSVファイルがインポートされました。');
         } else {
-
             return redirect()->back()->with('import-error', 'ファイルが存在しません。');
         }
     }

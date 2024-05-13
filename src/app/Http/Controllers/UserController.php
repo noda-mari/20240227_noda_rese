@@ -187,10 +187,8 @@ class UserController extends Controller
         return view('review2', compact('shop', 'review'));
     }
 
-    public function reviewStore(Request $request, $id)
+    public function reviewStore(ReviewRequest $request, $id)
     {
-
-        dd($request);
 
         $user_id = Auth::id();
 
