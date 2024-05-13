@@ -297,6 +297,7 @@ area_id,genre_id,name,description,shop_img
 
 下記の表のidを使用ください。
 
+![スクリーンショット 2024-05-12 122718](https://github.com/noda-mari/20240227_noda_rese/assets/147699251/e6a251c1-b3fb-42c1-9b3c-ace65ecd8132)
 
 例:  
 
